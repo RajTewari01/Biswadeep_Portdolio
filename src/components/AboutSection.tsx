@@ -232,10 +232,10 @@ export default function AboutSection() {
               <div>
                 <span className="stat-number" data-target="3" style={{
                   fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-                  fontSize: "clamp(80px, 12vw, 160px)",
+                  fontSize: "clamp(48px, 8vw, 96px)",
                   fontWeight: 900, color: "#0F172A", lineHeight: 0.9, letterSpacing: "-0.04em"
                 }}>0</span>
-                <span style={{ fontSize: "clamp(80px, 12vw, 160px)", fontWeight: 900, color: "#C9A96E", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>+</span>
+                <span style={{ fontSize: "clamp(48px, 8vw, 96px)", fontWeight: 900, color: "#C9A96E", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>+</span>
               </div>
             </div>
             
@@ -248,10 +248,10 @@ export default function AboutSection() {
               <div>
                 <span className="stat-number" data-target="15" style={{
                   fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-                  fontSize: "clamp(80px, 12vw, 160px)",
+                  fontSize: "clamp(48px, 8vw, 96px)",
                   fontWeight: 900, color: "#0F172A", lineHeight: 0.9, letterSpacing: "-0.04em"
                 }}>0</span>
-                <span style={{ fontSize: "clamp(80px, 12vw, 160px)", fontWeight: 900, color: "#C9A96E", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>+</span>
+                <span style={{ fontSize: "clamp(48px, 8vw, 96px)", fontWeight: 900, color: "#C9A96E", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>+</span>
               </div>
             </div>
           </div>
@@ -264,8 +264,8 @@ export default function AboutSection() {
               position: "relative", minHeight: "400px",
               boxShadow: "0 10px 40px rgba(0,0,0,0.04)",
             }}>
-              <Image src="/profile.jpg" alt="Biswadeep Tewari" width={800} height={800}
-                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.1) grayscale(0.2)" }}
+              <Image src="/biswadeep_mirzapur.png" alt="Biswadeep Tewari" width={800} height={1000}
+                style={{ width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.05)" }}
               />
               <div style={{
                 position: "absolute", inset: 0,

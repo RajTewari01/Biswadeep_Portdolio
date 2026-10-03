@@ -78,8 +78,6 @@ export default function GamifiedPopup({
                 )}
               </div>
             </div>
-              </div>
-            </div>
 
             <style>{`
               @keyframes boyArmWave {
