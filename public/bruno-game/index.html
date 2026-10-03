@@ -118,5 +118,165 @@
         gtag('config', 'UA-3966601-5')
     </script>
 
+    <!-- Mobile Joystick Overlay (SVG vectors) -->
+    <style>
+        .mobile-joystick-zone {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 160px;
+            z-index: 9999;
+            touch-action: none;
+        }
+        @media (max-width: 768px) {
+            .mobile-joystick-zone { display: block; }
+        }
+        .joystick-base {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .joystick-thumb {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 60px; height: 60px;
+            margin-top: -30px; margin-left: -30px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+            transition: transform 0.05s linear;
+        }
+        /* Starting Overlay for mobile */
+        .mobile-start-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(17, 17, 17, 0.95);
+            z-index: 10000;
+            color: #fff;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Comic Neue', sans-serif;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .mobile-start-overlay.is-active { display: flex; }
+        }
+        .start-btn {
+            margin-top: 40px;
+            padding: 16px 40px;
+            background: #C9A96E;
+            color: #111;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 0 30px rgba(201, 169, 110, 0.4);
+            cursor: pointer;
+        }
+        
+        @keyframes customBounce {
+            0%, 100% { transform: translateY(-10%); }
+            50% { transform: translateY(10%); }
+        }
+    </style>
+
+    <!-- Start Overlay -->
+    <div class="mobile-start-overlay is-active" id="startOverlay">
+        <svg width="100" height="100" viewBox="0 0 100 100" style="margin-bottom: 30px; animation: customBounce 2s infinite ease-in-out;">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#C9A96E" stroke-width="2" stroke-dasharray="10 10" />
+            <path d="M50 20 L80 70 L50 60 L20 70 Z" fill="#C9A96E" />
+        </svg>
+        <h1 style="margin: 0; font-size: 32px; letter-spacing: 4px; text-transform: uppercase;">Digital Realm</h1>
+        <p style="opacity: 0.7; margin-top: 15px; font-size: 16px;">Use the virtual joystick to drive your car.</p>
+        <button class="start-btn" id="startBtn">START ENGINE</button>
+    </div>
+
+    <div class="mobile-joystick-zone" id="joystickZone">
+        <svg class="joystick-base" viewBox="0 0 160 160">
+            <circle cx="80" cy="80" r="70" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2"/>
+        </svg>
+        <svg class="joystick-thumb" id="joystickThumb" viewBox="0 0 60 60">
+            <circle cx="30" cy="30" r="28" fill="#C9A96E" />
+            <circle cx="30" cy="30" r="12" fill="#ffffff" fill-opacity="0.4" />
+        </svg>
+    </div>
+
+    <script>
+        // Hide Start Overlay
+        document.getElementById('startBtn').addEventListener('click', function() {
+            document.getElementById('startOverlay').classList.remove('is-active');
+        });
+
+        // Joystick Logic
+        const zone = document.getElementById('joystickZone');
+        const thumb = document.getElementById('joystickThumb');
+        let activeKeys = {};
+
+        function triggerKey(key, type) {
+            if (type === 'keydown' && !activeKeys[key]) {
+                activeKeys[key] = true;
+                window.dispatchEvent(new KeyboardEvent('keydown', { key: key, code: 'Arrow' + key.replace('Arrow','') }));
+            } else if (type === 'keyup' && activeKeys[key]) {
+                activeKeys[key] = false;
+                window.dispatchEvent(new KeyboardEvent('keyup', { key: key, code: 'Arrow' + key.replace('Arrow','') }));
+            }
+        }
+
+        let isDragging = false;
+        let centerX, centerY;
+
+        zone.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const rect = zone.getBoundingClientRect();
+            centerX = rect.left + rect.width / 2;
+            centerY = rect.top + rect.height / 2;
+            handleTouch(e.touches[0]);
+        }, { passive: false });
+
+        zone.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            handleTouch(e.touches[0]);
+        }, { passive: false });
+
+        const endDrag = () => {
+            isDragging = false;
+            thumb.style.transform = `translate(0px, 0px)`;
+            ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].forEach(k => triggerKey(k, 'keyup'));
+        };
+        zone.addEventListener('touchend', endDrag);
+        zone.addEventListener('touchcancel', endDrag);
+
+        function handleTouch(touch) {
+            let dx = touch.clientX - centerX;
+            let dy = touch.clientY - centerY;
+            const maxDist = 50;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            
+            if (dist > maxDist) {
+                dx = (dx / dist) * maxDist;
+                dy = (dy / dist) * maxDist;
+            }
+            
+            thumb.style.transform = `translate(${dx}px, ${dy}px)`;
+            
+            const threshold = 15;
+            
+            if (dy < -threshold) triggerKey('ArrowUp', 'keydown');
+            else triggerKey('ArrowUp', 'keyup');
+            
+            if (dy > threshold) triggerKey('ArrowDown', 'keydown');
+            else triggerKey('ArrowDown', 'keyup');
+            
+            if (dx < -threshold) triggerKey('ArrowLeft', 'keydown');
+            else triggerKey('ArrowLeft', 'keyup');
+            
+            if (dx > threshold) triggerKey('ArrowRight', 'keydown');
+            else triggerKey('ArrowRight', 'keyup');
+        }
+    </script>
 </body>
 </html>

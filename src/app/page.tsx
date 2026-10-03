@@ -14,7 +14,7 @@ import { useGame } from "@/components/game/GameContext";
 
 // Three.js canvas — dynamically imported, no SSR
 const ThreeCanvas = dynamic(() => import("@/components/ThreeCanvas"), { ssr: false });
-const NativeGameWorld = dynamic(() => import("@/components/game/NativeGameWorld"), { ssr: false });
+const LegacyGameWorld = dynamic(() => import("@/components/game/LegacyGameWorld"), { ssr: false });
 
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -51,7 +51,7 @@ export default function Home() {
   return (
     <>
       {/* Gamified 3D World — perfectly sandboxed vanilla engine */}
-      <NativeGameWorld />
+      <LegacyGameWorld />
 
       {/* 3D WebGL background */}
       {!isGameMode && <ThreeCanvas />}
