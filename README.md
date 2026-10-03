@@ -1,6 +1,6 @@
-# NEXUS — Enterprise Portfolio Platform
+# Nexus Portfolio
 
-> **A high-performance, full-stack portfolio engineered on Next.js 16 (App Router), React 19, and Three.js — featuring 3D WebGL rendering, cinematic scroll animations, gamified interactive popups, a fortified 3-Factor Authentication admin vault, and edge-deployed serverless APIs.**
+> A full-stack developer portfolio built with Next.js 16 (App Router), React 19, and Three.js. It includes a custom admin dashboard, 3-factor authentication, and gamified UI elements.
 
 [![Build](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/build.yml/badge.svg)](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/build.yml)
 [![Lint](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/lint.yml/badge.svg)](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/lint.yml)
@@ -11,9 +11,9 @@
 
 ---
 
-## Why Nexus?
+## Overview
 
-Most portfolios are static HTML templates. **Nexus** is an architected platform — a showcase of real engineering depth, not just design polish. Every animation is physics-driven, every API route is edge-optimized, the admin dashboard is protected by hardware-level biometrics, and user interactions are gamified with custom 8-bit style popups and mascots.
+Nexus serves as a technical showcase of modern web development practices. It features smooth scroll-driven animations, an admin dashboard protected by hardware-level biometrics (WebAuthn), and interactive gamified UI components inspired by retro 8-bit games.
 
 ---
 
@@ -66,7 +66,7 @@ graph TB
 
 ## Core Modules
 
-### Cinematic Frontend & Gamification
+### Frontend & UI
 
 | Feature | Implementation |
 |---|---|
@@ -76,7 +76,7 @@ graph TB
 | **Custom Cursor** | Hover-aware interactive cursor with magnetic physics |
 | **SVG Mask Reveal** | `clip-path: circle()` with eased scroll-driven expansion using `getBoundingClientRect()` |
 | **Infinite Marquee** | CSS `@keyframes` with `IntersectionObserver` trigger — zero JS scroll dependencies |
-| **Smooth Scroll** | Lenis scroll engine with custom easing: `1.001 - 2^(-10t)` |
+| **Smooth Scroll** | Lenis scroll engine with custom easing |
 
 ### Credential Vault
 
