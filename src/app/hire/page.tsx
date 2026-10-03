@@ -59,8 +59,8 @@ export default function HirePage() {
       <div className="fixed inset-0 z-[1] bg-[#e8f5e9]/40 pointer-events-none" />
       <Navbar />
 
-      <main ref={containerRef} className="relative z-10 min-h-screen pt-24 pb-8 px-6 md:px-12 flex flex-col items-center justify-center">
-        <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center origin-center">
+      <main ref={containerRef} className="relative z-10 min-h-[100vh] pt-20 pb-4 px-4 md:px-8 flex flex-col items-center justify-center overflow-hidden">
+        <div className="w-full max-w-[1100px] grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center origin-center mt-8">
           
           {/* ─── Left: Copy & Links ─── */}
           <div className="flex flex-col justify-center">
@@ -69,14 +69,14 @@ export default function HirePage() {
               <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#111]/40">Available for Work</p>
             </div>
 
-            <h1 className="hire-stagger font-playfair text-[clamp(40px,6vw,72px)] font-black uppercase tracking-tighter leading-[0.95] text-[#111]">
+            <h1 className="hire-stagger font-playfair text-[clamp(32px,5vw,60px)] font-black uppercase tracking-tighter leading-[0.95] text-[#111]">
               Let&apos;s <br/>
               Build <br/>
               <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400, textTransform: "none" }}>Something</em><br/>
               Incredible.
             </h1>
 
-            <p className="hire-stagger mt-8 text-[#111]/50 font-light leading-relaxed max-w-md text-sm sm:text-base">
+            <p className="hire-stagger mt-6 text-[#111]/60 font-light leading-relaxed max-w-[400px] text-xs sm:text-sm">
               Need a backend built, a mobile app shipped, or an ML pipeline integrated? I'm open for freelance and contract work. Reach out below or send a message through the form.
             </p>
 
@@ -119,11 +119,11 @@ export default function HirePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative mt-8 lg:mt-0"
+            className="relative mt-6 md:mt-0"
           >
-            <form onSubmit={handleSubmit} className="relative p-6 sm:p-8 rounded-3xl flex flex-col gap-5 w-full border border-[#111]/10 shadow-lg bg-white">
+            <form onSubmit={handleSubmit} className="relative p-5 sm:p-6 rounded-3xl flex flex-col gap-4 w-full border border-[#111]/10 shadow-lg bg-white">
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-2">
                   <label htmlFor="name" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/50 ml-1">Name</label>
                   <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name"
@@ -148,24 +148,24 @@ export default function HirePage() {
                 </datalist>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/50 ml-1">Message</label>
-                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Describe your project requirements..." rows={4}
-                  className="bg-[#f9fafb] border border-[#111]/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white outline-none transition-all resize-none" />
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="message" className="font-mono text-[9px] tracking-widest uppercase text-[#111]/50 ml-1">Message</label>
+                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Describe your project requirements..." rows={3}
+                  className="bg-[#f9fafb] border border-[#111]/10 rounded-lg p-2.5 text-[#111] text-xs focus:border-[#C9A96E]/50 focus:bg-white outline-none transition-all resize-none" />
               </div>
 
               {status === "error" && (
-                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm font-light">{errorMessage}</div>
+                <div className="p-2 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-xs font-light">{errorMessage}</div>
               )}
               {status === "success" && (
-                <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-sm font-light flex items-center gap-2">
-                  <span className="text-lg">✓</span> Message sent successfully. I&apos;ll get back to you soon!
+                <div className="p-2 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400 text-xs font-light flex items-center gap-2">
+                  <span className="text-base">✓</span> Message sent successfully. I&apos;ll get back to you soon!
                 </div>
               )}
 
               <button type="submit" disabled={status === "loading" || status === "success"}
-                className="mt-2 w-full relative overflow-hidden text-[#C9A96E] bg-[#C9A96E]/10 border border-[#C9A96E] font-syne font-bold tracking-[0.2em] py-4 rounded-full transition-all hover:bg-[#C9A96E]/20 hover:shadow-[0_0_30px_rgba(201,169,110,0.15)] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
-                <span className="relative z-10 block transition-colors duration-300">
+                className="mt-1 w-full relative overflow-hidden text-[#C9A96E] bg-[#C9A96E]/10 border border-[#C9A96E] font-syne font-bold tracking-[0.2em] py-3 rounded-full transition-all hover:bg-[#C9A96E]/20 hover:shadow-[0_0_30px_rgba(201,169,110,0.15)] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+                <span className="relative z-10 block transition-colors duration-300 text-xs">
                   {status === "loading" ? "SENDING..." : status === "success" ? "MESSAGE SENT" : "SEND MESSAGE"}
                 </span>
               </button>
