@@ -28,6 +28,9 @@ function determineMetadata(filename) {
   } else if (lower.includes('google')) {
     issuer = "Google";
     category = "google_skill_badge";
+  } else if (lower.includes('google')) {
+    issuer = "Google Cloud";
+    category = "google";
   } else if (lower.includes('ai fluency')) {
     issuer = "AI Fluency";
     category = "ai_fluency";
