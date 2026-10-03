@@ -1,0 +1,48 @@
+e:qn,depthTest:!0,depthWrite:!1,uniforms:o,vertexShader:EA,fragmentShader:TA})}var RA=`#define M_PI 3.1415926535897932384626433832795
+
+uniform vec3 uColor;\r
+uniform float uAlpha;\r
+uniform float uLoadProgress;\r
+uniform float uProgress;
+
+varying vec3 vPosition;
+
+void main()\r
+{\r
+    float angle = atan(vPosition.x, vPosition.y);\r
+    float loadProgress = step(abs(angle / M_PI), uLoad
+
+====================
+
+loat uLoadProgress;\r
+uniform float uProgress;
+
+varying vec3 vPosition;
+
+void main()\r
+{\r
+    float angle = atan(vPosition.x, vPosition.y);\r
+    float loadProgress = step(abs(angle / M_PI), uLoadProgress);\r
+    float progress = step(1.0 - abs(angle / M_PI), uProgress);
+
+    float alpha = uAlpha;\r
+    alpha -= uAlpha * 0.5 * (1.0 - loadProgress);\r
+    alpha *= progress;
+
+    gl_
+
+====================
+
+odelMatrix * vec4(position, 1.0);\r
+    gl_Position = projectionMatrix * viewMatrix * modelPosition;
+
+    vPosition = position;\r
+}`;function LA(){const o={uColor:{value:null},uAlpha:{value:null},uLoadProgress:{value:null},uProgress:{value:null}};return new yn({wireframe:!1,transparent:!0,depthTest:!0,depthWrite:!1,uniforms:o,vertexShader:PA,fragmentShader:RA})}class IA extends nr{constructor(
+
+====================
+
+xtents.y*2,.25),this.floorBorder.material=new LA,this.floorBorder.material.uniforms.uColor.value=new ke(16777215),this.floorBorder.material.uniforms.uAlpha.value=.5,this.floorBorder.material.uniforms.uLoadProgress.value=1,this.floorBorder.material.uniforms.uProgress.value=1,this.floorBorder.mesh=new Ae(this.floorBorder.geometry,this.floorBorder.material),this.floorBorder.mesh.matrixAutoUpdate=!1,t
+
+====================
+
+.add(this.startingScreen.startLabel.mesh),this.resources.on("progress",e=>{this.startingScreen.area.floorBorder.material.uniforms.uAlpha.value=1,this.startingScreen.area.floorBorder.material.uniforms.uLoadProgress.value=e}),this.resources.on("ready",()=>{window.requestAnimationFrame(()=>{this.startingScreen.area.activate(),tt.to(this.startingScreen.area.floorBorder.material.uniforms.uAlpha,{value:

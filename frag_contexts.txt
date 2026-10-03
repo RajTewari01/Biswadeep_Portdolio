@@ -1,0 +1,694 @@
+t===!0?e.texture.colorSpace:Tt.workingColorSpace}const Mp={clone:Yr,merge:Dn};var o0=`void main() {
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+}`,a0=`void main() {
+	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+}`;class yn extends Kn{constructor(e){super(),this.isShaderMaterial=!0,this.type="ShaderMaterial",this.defines={},this.uniforms={},this.uniformsGroups=[],th
+
+====================
+
+ect;
+
+				varying vec3 vWorldDirection;
+
+				#include <common>
+
+				void main() {
+
+					vec3 direction = normalize( vWorldDirection );
+
+					vec2 sampleUV = equirectUv( direction );
+
+					gl_FragColor = texture2D( tEquirect, sampleUV );
+
+				}
+			`},i=new Gt(5,5,5),s=new yn({name:"CubemapFromEquirect",uniforms:Yr(n.uniforms),vertexShader:n.vertexShader,fragmentShader:n.fragmentShade
+
+====================
+
+IVEMAP
+	vec4 emissiveColor = texture2D( emissiveMap, vEmissiveMapUv );
+	totalEmissiveRadiance *= emissiveColor.rgb;
+#endif`,H0=`#ifdef USE_EMISSIVEMAP
+	uniform sampler2D emissiveMap;
+#endif`,G0="gl_FragColor = linearToOutputTexel( gl_FragColor );",W0=`
+const mat3 LINEAR_SRGB_TO_LINEAR_DISPLAY_P3 = mat3(
+	vec3( 0.8224621, 0.177538, 0.0 ),
+	vec3( 0.0331941, 0.9668058, 0.0 ),
+	vec3( 0.017082
+
+====================
+
+e2D( emissiveMap, vEmissiveMapUv );
+	totalEmissiveRadiance *= emissiveColor.rgb;
+#endif`,H0=`#ifdef USE_EMISSIVEMAP
+	uniform sampler2D emissiveMap;
+#endif`,G0="gl_FragColor = linearToOutputTexel( gl_FragColor );",W0=`
+const mat3 LINEAR_SRGB_TO_LINEAR_DISPLAY_P3 = mat3(
+	vec3( 0.8224621, 0.177538, 0.0 ),
+	vec3( 0.0331941, 0.9668058, 0.0 ),
+	vec3( 0.0170827, 0.0723974, 0.9105199 )
+);
+const
+
+====================
+
+#ifdef USE_FOG
+	#ifdef FOG_EXP2
+		float fogFactor = 1.0 - exp( - fogDensity * fogDensity * vFogDepth * vFogDepth );
+	#else
+		float fogFactor = smoothstep( fogNear, fogFar, vFogDepth );
+	#endif
+	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+#endif`,J0=`#ifdef USE_FOG
+	uniform vec3 fogColor;
+	varying float vFogDepth;
+	#ifdef FOG_EXP2
+		uniform float fogDensity;
+	#else
+
+====================
+
+FOG_EXP2
+		float fogFactor = 1.0 - exp( - fogDensity * fogDensity * vFogDepth * vFogDepth );
+	#else
+		float fogFactor = smoothstep( fogNear, fogFar, vFogDepth );
+	#endif
+	gl_FragColor.rgb = mix( gl_FragColor.rgb, fogColor, fogFactor );
+#endif`,J0=`#ifdef USE_FOG
+	uniform vec3 fogColor;
+	varying float vFogDepth;
+	#ifdef FOG_EXP2
+		uniform float fogDensity;
+	#else
+		uniform float fogNear
+
+====================
+
+CE_THICKNESSMAP
+	uniform sampler2D iridescenceThicknessMap;
+#endif`,z_=`#ifdef OPAQUE
+diffuseColor.a = 1.0;
+#endif
+#ifdef USE_TRANSMISSION
+diffuseColor.a *= material.transmissionAlpha;
+#endif
+gl_FragColor = vec4( outgoingLight, diffuseColor.a );`,V_=`vec3 packNormalToRGB( const in vec3 normal ) {
+	return normalize( normal ) * 0.5 + 0.5;
+}
+vec3 unpackRGBToNormal( const in vec3 rgb ) {
+	
+
+====================
+
+;
+}
+float perspectiveDepthToViewZ( const in float depth, const in float near, const in float far ) {
+	return ( near * far ) / ( ( far - near ) * depth - far );
+}`,H_=`#ifdef PREMULTIPLIED_ALPHA
+	gl_FragColor.rgb *= gl_FragColor.a;
+#endif`,G_=`vec4 mvPosition = vec4( transformed, 1.0 );
+#ifdef USE_BATCHING
+	mvPosition = batchingMatrix * mvPosition;
+#endif
+#ifdef USE_INSTANCING
+	mvPositio
+
+====================
+
+iveDepthToViewZ( const in float depth, const in float near, const in float far ) {
+	return ( near * far ) / ( ( far - near ) * depth - far );
+}`,H_=`#ifdef PREMULTIPLIED_ALPHA
+	gl_FragColor.rgb *= gl_FragColor.a;
+#endif`,G_=`vec4 mvPosition = vec4( transformed, 1.0 );
+#ifdef USE_BATCHING
+	mvPosition = batchingMatrix * mvPosition;
+#endif
+#ifdef USE_INSTANCING
+	mvPosition = instanceMatrix *
+
+====================
+
+n;
+#endif
+#ifdef USE_INSTANCING
+	mvPosition = instanceMatrix * mvPosition;
+#endif
+mvPosition = modelViewMatrix * mvPosition;
+gl_Position = projectionMatrix * mvPosition;`,W_=`#ifdef DITHERING
+	gl_FragColor.rgb = dithering( gl_FragColor.rgb );
+#endif`,X_=`#ifdef DITHERING
+	vec3 dithering( vec3 color ) {
+		float grid_position = rand( gl_FragCoord.xy );
+		vec3 dither_shift_RGB = vec3( 0.25
+
+====================
+
+ING
+	mvPosition = instanceMatrix * mvPosition;
+#endif
+mvPosition = modelViewMatrix * mvPosition;
+gl_Position = projectionMatrix * mvPosition;`,W_=`#ifdef DITHERING
+	gl_FragColor.rgb = dithering( gl_FragColor.rgb );
+#endif`,X_=`#ifdef DITHERING
+	vec3 dithering( vec3 color ) {
+		float grid_position = rand( gl_FragCoord.xy );
+		vec3 dither_shift_RGB = vec3( 0.25 / 255.0, -0.25 / 255.0, 0.25 
+
+====================
+
+SpecularMapUv );
+	specularStrength = texelSpecular.r;
+#else
+	specularStrength = 1.0;
+#endif`,iy=`#ifdef USE_SPECULARMAP
+	uniform sampler2D specularMap;
+#endif`,sy=`#if defined( TONE_MAPPING )
+	gl_FragColor.rgb = toneMapping( gl_FragColor.rgb );
+#endif`,ry=`#ifndef saturate
+#define saturate( a ) clamp( a, 0.0, 1.0 )
+#endif
+uniform float toneMappingExposure;
+vec3 LinearToneMapping( vec3 
+
+====================
+
+gth = texelSpecular.r;
+#else
+	specularStrength = 1.0;
+#endif`,iy=`#ifdef USE_SPECULARMAP
+	uniform sampler2D specularMap;
+#endif`,sy=`#if defined( TONE_MAPPING )
+	gl_FragColor.rgb = toneMapping( gl_FragColor.rgb );
+#endif`,ry=`#ifndef saturate
+#define saturate( a ) clamp( a, 0.0, 1.0 )
+#endif
+uniform float toneMappingExposure;
+vec3 LinearToneMapping( vec3 color ) {
+	return saturate( ton
+
+====================
+
+478672986 + vec3( 0.0521327014 ), vec3( 2.4 ) ), texColor.rgb * 0.0773993808, vec3( lessThanEqual( texColor.rgb, vec3( 0.04045 ) ) ) ), texColor.w );
+	#endif
+	texColor.rgb *= backgroundIntensity;
+	gl_FragColor = texColor;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,py=`varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vWorldDirection = transformDirecti
+
+====================
+
+exColor = textureCubeUV( envMap, backgroundRotation * vWorldDirection, backgroundBlurriness );
+	#else
+		vec4 texColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+	#endif
+	texColor.rgb *= backgroundIntensity;
+	gl_FragColor = texColor;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,gy=`varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vWorldDirection = transformDirecti
+
+====================
+
+ube tCube;
+uniform float tFlip;
+uniform float opacity;
+varying vec3 vWorldDirection;
+void main() {
+	vec4 texColor = textureCube( tCube, vec3( tFlip * vWorldDirection.x, vWorldDirection.yz ) );
+	gl_FragColor = texColor;
+	gl_FragColor.a *= opacity;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,_y=`#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_v
+
+====================
+
+Flip;
+uniform float opacity;
+varying vec3 vWorldDirection;
+void main() {
+	vec4 texColor = textureCube( tCube, vec3( tFlip * vWorldDirection.x, vWorldDirection.yz ) );
+	gl_FragColor = texColor;
+	gl_FragColor.a *= opacity;
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,_y=`#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacem
+
+====================
+
+clude <alphatest_fragment>
+	#include <alphahash_fragment>
+	#include <logdepthbuf_fragment>
+	float fragCoordZ = 0.5 * vHighPrecisionZW[0] / vHighPrecisionZW[1] + 0.5;
+	#if DEPTH_PACKING == 3200
+		gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );
+	#elif DEPTH_PACKING == 3201
+		gl_FragColor = packDepthToRGBA( fragCoordZ );
+	#endif
+}`,xy=`#define DISTANCE
+varying vec3 vWorldPosition;
+
+====================
+
+>
+	float fragCoordZ = 0.5 * vHighPrecisionZW[0] / vHighPrecisionZW[1] + 0.5;
+	#if DEPTH_PACKING == 3200
+		gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );
+	#elif DEPTH_PACKING == 3201
+		gl_FragColor = packDepthToRGBA( fragCoordZ );
+	#endif
+}`,xy=`#define DISTANCE
+varying vec3 vWorldPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <
+
+====================
+
+_fragment>
+	#include <alphahash_fragment>
+	float dist = length( vWorldPosition - referencePosition );
+	dist = ( dist - nearDistance ) / ( farDistance - nearDistance );
+	dist = saturate( dist );
+	gl_FragColor = packDepthToRGBA( dist );
+}`,by=`varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vWorldDirection = transformDirection( position, modelMatrix );
+	#include <begin_verte
+
+====================
+
+ex>
+}`,Sy=`uniform sampler2D tEquirect;
+varying vec3 vWorldDirection;
+#include <common>
+void main() {
+	vec3 direction = normalize( vWorldDirection );
+	vec2 sampleUV = equirectUv( direction );
+	gl_FragColor = texture2D( tEquirect, sampleUV );
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+}`,My=`uniform float scale;
+attribute float lineDistance;
+varying float vLineDist
+
+====================
+
+ {
+	vec4 diffuseColor = vec4( 0.0, 0.0, 0.0, opacity );
+	#include <clipping_planes_fragment>
+	#include <logdepthbuf_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	gl_FragColor = vec4( packNormalToRGB( normal ), diffuseColor.a );
+	#ifdef OPAQUE
+		gl_FragColor.a = 1.0;
+	#endif
+}`,Fy=`#define PHONG
+varying vec3 vViewPosition;
+#include <common>
+#include <bat
+
+====================
+
+fragment>
+	#include <logdepthbuf_fragment>
+	#include <normal_fragment_begin>
+	#include <normal_fragment_maps>
+	gl_FragColor = vec4( packNormalToRGB( normal ), diffuseColor.a );
+	#ifdef OPAQUE
+		gl_FragColor.a = 1.0;
+	#endif
+}`,Fy=`#define PHONG
+varying vec3 vViewPosition;
+#include <common>
+#include <batching_pars_vertex>
+#include <uv_pars_vertex>
+#include <displacementmap_pars_vertex>
+
+====================
+
+<bsdfs>
+#include <lights_pars_begin>
+#include <logdepthbuf_pars_fragment>
+#include <shadowmap_pars_fragment>
+#include <shadowmask_pars_fragment>
+void main() {
+	#include <logdepthbuf_fragment>
+	gl_FragColor = vec4( color, opacity * ( 1.0 - getShadowMask() ) );
+	#include <tonemapping_fragment>
+	#include <colorspace_fragment>
+	#include <fog_fragment>
+}`,Wy=`uniform float rotation;
+uniform
+
+====================
+
+ poleAxis, vOutputDirection );
+
+				if ( all( equal( axis, vec3( 0.0 ) ) ) ) {
+
+					axis = vec3( vOutputDirection.z, 0.0, - vOutputDirection.x );
+
+				}
+
+				axis = normalize( axis );
+
+				gl_FragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+				gl_FragColor.rgb += weights[ 0 ] * getSample( 0.0, axis );
+
+				for ( int i = 1; i < n; i++ ) {
+
+					if ( i >= samples ) {
+
+						break;
+
+					
+
+====================
+
+equal( axis, vec3( 0.0 ) ) ) ) {
+
+					axis = vec3( vOutputDirection.z, 0.0, - vOutputDirection.x );
+
+				}
+
+				axis = normalize( axis );
+
+				gl_FragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+				gl_FragColor.rgb += weights[ 0 ] * getSample( 0.0, axis );
+
+				for ( int i = 1; i < n; i++ ) {
+
+					if ( i >= samples ) {
+
+						break;
+
+					}
+
+					float theta = dTheta * float( i );
+		
+
+====================
+
+FragColor.rgb += weights[ 0 ] * getSample( 0.0, axis );
+
+				for ( int i = 1; i < n; i++ ) {
+
+					if ( i >= samples ) {
+
+						break;
+
+					}
+
+					float theta = dTheta * float( i );
+					gl_FragColor.rgb += weights[ i ] * getSample( -1.0 * theta, axis );
+					gl_FragColor.rgb += weights[ i ] * getSample( theta, axis );
+
+				}
+
+			}
+		`,blending:qi,depthTest:!1,depthWrite:!1})}fu
+
+====================
+
+ = 1; i < n; i++ ) {
+
+					if ( i >= samples ) {
+
+						break;
+
+					}
+
+					float theta = dTheta * float( i );
+					gl_FragColor.rgb += weights[ i ] * getSample( -1.0 * theta, axis );
+					gl_FragColor.rgb += weights[ i ] * getSample( theta, axis );
+
+				}
+
+			}
+		`,blending:qi,depthTest:!1,depthWrite:!1})}function _d(){return new yn({name:"EquirectangularToCubeUV",uniforms:{envMap
+
+====================
+
+irection;
+
+			uniform sampler2D envMap;
+
+			#include <common>
+
+			void main() {
+
+				vec3 outputDirection = normalize( vOutputDirection );
+				vec2 uv = equirectUv( outputDirection );
+
+				gl_FragColor = vec4( texture2D ( envMap, uv ).rgb, 1.0 );
+
+			}
+		`,blending:qi,depthTest:!1,depthWrite:!1})}function yd(){return new yn({name:"CubemapToCubeUV",uniforms:{envMap:{value:null},flipEn
+
+====================
+
+entShader:`
+
+			precision mediump float;
+			precision mediump int;
+
+			uniform float flipEnvMap;
+
+			varying vec3 vOutputDirection;
+
+			uniform samplerCube envMap;
+
+			void main() {
+
+				gl_FragColor = textureCube( envMap, vec3( flipEnvMap * vOutputDirection.x, vOutputDirection.yz ) );
+
+			}
+		`,blending:qi,depthTest:!1,depthWrite:!1})}function Lh(){return`
+
+		precision mediump f
+
+====================
+
+","#define varying out","#define texture2D texture"].join(`
+`)+`
+`+m,v=["#define varying in",t.glslVersion===ju?"":"layout(location = 0) out highp vec4 pc_fragColor;",t.glslVersion===ju?"":"#define gl_FragColor pc_fragColor","#define gl_FragDepthEXT gl_FragDepth","#define texture2D texture","#define textureCube texture","#define texture2DProj textureProj","#define texture2DLodEXT textureLod","#d
+
+====================
+
+tion ) );
+			mean += depth;
+			squared_mean += depth * depth;
+		#endif
+	}
+	mean = mean / samples;
+	squared_mean = squared_mean / samples;
+	float std_dev = sqrt( squared_mean - mean * mean );
+	gl_FragColor = pack2HalfToRGBA( vec2( mean, std_dev ) );
+}`;function kw(o,e,t){let n=new Ph;const i=new ge,s=new ge,r=new At,a=new Lw({depthPacking:vv}),c=new Iw,u={},d=t.maxTextureSize,l={[Yi]:Nn,[N
+
+====================
+
+hadow;\r
+uniform vec3 uShadowColor;\r
+uniform float uAlpha;
+
+varying vec2 vUv;
+
+void main()\r
+{\r
+    float shadowAlpha = 1.0 - texture2D(tShadow, vUv).r;\r
+    shadowAlpha *= uAlpha;
+
+    gl_FragColor = vec4(uShadowColor, shadowAlpha);\r
+}`,NS=`varying vec2 vUv;
+
+void main()\r
+{\r
+    vUv = uv;\r
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\r
+}`;fu
+
+====================
+
+
+    indirectAngleStrength = pow(indirectAngleStrength, uIndirectAnglePower);
+
+    
+    float indirectStrength = indirectDistanceStrength * indirectAngleStrength;\r
+    
+
+    
+    
+    
+    gl_FragColor = vec4(mix(outgoingLight, uIndirectColor, indirectStrength), diffuseColor.a);\r
+    
+
+	#include <opaque_fragment>\r
+	#include <tonemapping_fragment>\r
+	#include <colorspace_fragment>
+
+====================
+
+or").onChange(this.items.floorShadow.updateMaterials)}}}var VS=`uniform sampler2D tBackground;
+
+varying vec2 vUv;
+
+void main()\r
+{\r
+    vec4 backgroundColor = texture(tBackground, vUv);\r
+    gl_FragColor = backgroundColor;\r
+}`,HS=`varying vec2 vUv;
+
+void main()\r
+{\r
+    vUv = uv;
+
+    vec3 newPosition = position;\r
+    newPosition.z = 1.0;\r
+    gl_Position = vec4(newPosition, 
+
+====================
+
+
+        float yPos = clamp((1.0 - vUv.y) / uFadeRadius, 0.0, 1.0);
+
+        strength = xNeg * xPos * yNeg * yPos;\r
+    }
+
+    strength = sineInOut(strength);\r
+    strength *= uAlpha;
+
+    gl_FragColor = vec4(uColor, strength);\r
+	#include <colorspace_fragment>\r
+}`,jS=`varying vec2 vUv;
+
+void main()\r
+{\r
+    vUv = uv;\r
+    gl_Position = projectionMatrix * modelViewMatrix * vec
+
+====================
+
+th, 0.5) * uStrikeAlpha;
+
+    float borderStrength = max(step(1.0 - vUv.y, uBorderWidth), step(vUv.y, uBorderWidth)) * uBorderAlpha;
+
+    float alpha = max(strikeStrength, borderStrength);
+
+    gl_FragColor = vec4(vec3(1.0), alpha);
+
+    
+}`,EA=`varying vec3 vPosition;\r
+varying vec3 vModelPosition;\r
+varying vec2 vUv;
+
+void main()\r
+{\r
+    vec4 modelPosition = modelMatrix * vec4(p
+
+====================
+
+), uLoadProgress);\r
+    float progress = step(1.0 - abs(angle / M_PI), uProgress);
+
+    float alpha = uAlpha;\r
+    alpha -= uAlpha * 0.5 * (1.0 - loadProgress);\r
+    alpha *= progress;
+
+    gl_FragColor = vec4(uColor, alpha);\r
+    
+}`,PA=`varying vec3 vPosition;
+
+void main()\r
+{\r
+    vec4 modelPosition = modelMatrix * vec4(position, 1.0);\r
+    gl_Position = projectionMatrix * v
+
+====================
+
+)}}))}}var HA=`uniform sampler2D uTexture;\r
+uniform vec3 uColor;\r
+uniform float uTextureAlpha;
+
+varying vec2 vUv;
+
+void main()\r
+{\r
+    vec4 textureColor = texture2D(uTexture, vUv);
+
+    gl_FragColor = mix(vec4(uColor, 1.0), textureColor, uTextureAlpha);\r
+	#include <colorspace_fragment>\r
+}`,GA=`varying vec2 vUv;
+
+void main()\r
+{\r
+    vUv = uv;\r
+    gl_Position = projectionM
+
+====================
+
+c4( position, 1.0 );
+
+		}`,fragmentShader:`
+
+		uniform float opacity;
+
+		uniform sampler2D tDiffuse;
+
+		varying vec2 vUv;
+
+		void main() {
+
+			vec4 texel = texture2D( tDiffuse, vUv );
+			gl_FragColor = opacity * texel;
+
+
+		}`};class Ll{constructor(){this.isPass=!0,this.enabled=!0,this.needsSwap=!0,this.clear=!1,this.renderToScreen=!1}setSize(){}render(){console.error("THREE.Pass: .
+
+====================
+
+void main()\r
+{\r
+    vec4 diffuseColor = texture2D(tDiffuse, vUv);\r
+    vec4 blurColor = blur9(tDiffuse, vUv, uResolution, uStrength);\r
+    float blurStrength = 1.0 - sin(vUv.y * M_PI);\r
+    gl_FragColor = mix(diffuseColor, blurColor, blurStrength);\r
+}`,BE=`varying vec2 vUv;
+
+void main()\r
+{\r
+    vUv = uv;\r
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0
+
+====================
+
+;\r
+    glowStrength = 1.0 - glowStrength;\r
+    glowStrength *= uAlpha;\r
+    glowStrength = clamp(glowStrength, 0.0, 1.0);\r
+    vec3 color = mix(diffuseColor.rgb, uColor, glowStrength);
+
+    gl_FragColor = vec4(color, 1.0);\r
+}`,UE=`varying vec2 vUv;
+
+void main()\r
+{\r
+    vUv = uv;\r
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);\r
+}`;const zE={uniform

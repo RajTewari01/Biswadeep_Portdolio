@@ -39,7 +39,7 @@ export default function LegacyGameWorld() {
       {/* Exit Button overlay */}
       <button 
         onClick={exitGameMode}
-        className="absolute top-6 right-8 z-[110] flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-red-600 font-mono text-[11px] font-bold tracking-widest rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:scale-105 active:scale-95 border-none"
+        className="absolute top-6 right-8 z-[110] flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-red-600 font-mono text-[13px] tracking-widest rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:scale-105 active:scale-95 border-none cursor-pointer"
       >
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
