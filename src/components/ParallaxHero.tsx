@@ -500,7 +500,7 @@ export default function ParallaxHero() {
                   .architect-img-container { border-radius: 24px 0 0 24px !important; margin-top: 40px; margin-bottom: 80px; }
                 }
               `}</style>
-              <Image src="/biswadeep_google.png" alt="Biswadeep Tewari" width={800} height={600}
+              <Image src="/profile.jpg" alt="Biswadeep Tewari" width={800} height={600}
                 className="architect-img-wrap"
               />
               <div style={{
