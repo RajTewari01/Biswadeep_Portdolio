@@ -59,7 +59,7 @@ export default function ContactSection() {
     <section id="contact" ref={sectionRef} style={{
       position: "relative",
       minHeight: "100vh",
-      background: "#080808",
+      background: "#e8f5e9",
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       padding: "120px 24px",
@@ -80,20 +80,20 @@ export default function ContactSection() {
         style={{
           fontFamily: "var(--font-playfair), 'Playfair Display', serif",
           fontSize: "clamp(48px, 14vw, 160px)",
-          fontWeight: 900, color: "#fff",
+          fontWeight: 900, color: "#111",
           lineHeight: 0.85, letterSpacing: "-0.06em",
           textAlign: "center", marginBottom: 48,
           transformOrigin: "50% 50%",
         }}
       >
-        Join<br />
-        <em style={{ fontWeight: 400, color: "#C9A96E" }}>Nexus.</em>
+        Contact<br />
+        <em style={{ fontWeight: 400, color: "#C9A96E" }}>Us.</em>
       </h2>
 
       {/* Subtext */}
       <p style={{
         fontFamily: "monospace", fontSize: 12,
-        color: "rgba(255,255,255,0.4)", maxWidth: 400,
+        color: "#444", maxWidth: 400,
         textAlign: "center", lineHeight: 1.8, marginBottom: 40,
       }}>
         Got a project in mind, need a backend built, or looking for someone
@@ -114,24 +114,24 @@ export default function ContactSection() {
             className="link-pill"
             style={{
               padding: "12px 32px", borderRadius: 32,
-              border: "1px solid rgba(255,255,255,0.1)",
-              background: "rgba(255,255,255,0.02)",
-              backdropFilter: "blur(12px)",
-              color: "rgba(255,255,255,0.6)", fontFamily: "monospace",
+              border: "1px solid rgba(0,0,0,0.05)",
+              background: "#fff",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+              color: "#444", fontFamily: "monospace",
               fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase",
-              fontWeight: 400, textDecoration: "none",
+              fontWeight: 700, textDecoration: "none",
               transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
               display: "flex", alignItems: "center", gap: 10,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(201,169,110,0.15)";
+              e.currentTarget.style.background = "rgba(201,169,110,0.1)";
               e.currentTarget.style.borderColor = "#C9A96E";
               e.currentTarget.style.color = "#C9A96E";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(255,255,255,0.02)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
-              e.currentTarget.style.color = "rgba(255,255,255,0.6)";
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.style.borderColor = "rgba(0,0,0,0.05)";
+              e.currentTarget.style.color = "#444";
             }}
           >
             {link.label}
@@ -169,12 +169,12 @@ export default function ContactSection() {
       {/* Footer line */}
       <footer style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        borderTop: "1px solid rgba(255,255,255,0.04)",
+        borderTop: "1px solid rgba(0,0,0,0.04)",
         padding: "20px 0",
       }}>
         <div className="section-pad-x" style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          fontFamily: "monospace", fontSize: 9, color: "rgba(255,255,255,0.2)",
+          fontFamily: "monospace", fontSize: 9, color: "rgba(0,0,0,0.4)",
           letterSpacing: "0.15em",
         }}>
           <span>© 2026 BISWADEEP TEWARI</span>

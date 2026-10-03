@@ -9,7 +9,7 @@ interface SectionDividerProps {
 
 export default function SectionDivider({
   variant,
-  fromColor = "#080808",
+  fromColor = "#e8f5e9",
   toColor = "#F4EEE4",
   height = 90,
 }: SectionDividerProps) {

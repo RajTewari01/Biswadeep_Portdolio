@@ -57,7 +57,7 @@ export default function Home() {
       {!isGameMode && <ThreeCanvas />}
 
       {/* Global black overlay for depth */}
-      {!isGameMode && <div className="fixed inset-0 z-[1] bg-black/30 pointer-events-none" />}
+      {!isGameMode && <div className="fixed inset-0 z-[1] bg-[#e8f5e9]/30 pointer-events-none" />}
 
       {/* Custom cursor */}
       {!isGameMode && <CustomCursor />}

@@ -15,7 +15,7 @@ export default function LegacyGameWorld() {
 
   return (
     <div 
-      className="fixed inset-0 z-[100] bg-[#080808] animate-in fade-in duration-700"
+      className="fixed inset-0 z-[100] bg-[#e8f5e9] animate-in fade-in duration-700"
       style={{ isolation: "isolate" }}
     >
       {/* 
@@ -39,7 +39,7 @@ export default function LegacyGameWorld() {
       {/* Exit Button overlay */}
       <button 
         onClick={exitGameMode}
-        className="absolute top-6 right-8 z-[110] px-4 py-2 bg-black/40 hover:bg-red-500/20 border border-white/10 hover:border-red-500/50 text-white/50 hover:text-red-400 font-monospace text-xs tracking-widest uppercase rounded-lg backdrop-blur-md transition-all duration-300"
+        className="absolute top-6 right-8 z-[110] px-4 py-2 bg-[#e8f5e9]/40 hover:bg-red-500/20 border border-white/10 hover:border-red-500/50 text-[#111]/50 hover:text-red-400 font-monospace text-xs tracking-widest uppercase rounded-lg backdrop-blur-md transition-all duration-300"
       >
         ✕ Exit Game
       </button>

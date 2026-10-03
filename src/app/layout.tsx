@@ -8,13 +8,19 @@ export const viewport: Viewport = {
 };
 
 import { GameProvider } from "@/components/game/GameContext";
-import { Space_Grotesk, Syne, Playfair_Display } from "next/font/google";
+import { Space_Grotesk, Syne, Playfair_Display, Pacifico } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+});
+
+const pacifico = Pacifico({
+  variable: "--font-pacifico",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const syne = Syne({
@@ -44,8 +50,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-black">
-      <body className={`${spaceGrotesk.variable} ${syne.variable} ${playfair.variable} antialiased bg-black text-white selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden`}>
+    <html lang="en" className="bg-[#e8f5e9]">
+      <body className={`${spaceGrotesk.variable} ${syne.variable} ${playfair.variable} ${pacifico.variable} antialiased bg-[#e8f5e9] text-[#111] selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden`}>
         <GameProvider>
           {children}
         </GameProvider>

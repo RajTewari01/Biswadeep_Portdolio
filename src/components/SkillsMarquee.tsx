@@ -38,7 +38,7 @@ export default function SkillsMarquee() {
       ref={sectionRef}
       style={{
         position: "relative", minHeight: "80vh",
-        background: "#080808", overflow: "hidden",
+        background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)", overflow: "hidden",
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "80px 0",
@@ -56,11 +56,27 @@ export default function SkillsMarquee() {
         }
       `}</style>
 
+      {/* Top curve */}
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" style={{
+        position: "absolute", top: -1, left: 0, right: 0,
+        width: "100%", height: 90, zIndex: 10,
+      }}>
+        <path d="M0,0 L1440,0 L1440,60 C1080,90 360,0 0,30 Z" fill="#e8f5e9" />
+      </svg>
+
       {/* Grain */}
       <div style={{
         position: "absolute", inset: 0,
         backgroundImage: GRAIN, backgroundSize: "220px 220px",
         opacity: 0.13, pointerEvents: "none",
+      }} />
+
+      {/* Grid */}
+      <div style={{
+        position: "absolute", inset: 0, opacity: 0.15,
+        backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+        backgroundSize: "55px 55px",
+        pointerEvents: "none",
       }} />
 
       {/* Ambient glow */}
@@ -76,7 +92,7 @@ export default function SkillsMarquee() {
       <div style={{
         display: "flex", alignItems: "center", gap: 10,
         fontFamily: "monospace", fontSize: 9, letterSpacing: "0.28em",
-        color: "rgba(255,255,255,0.35)", marginBottom: 48,
+        color: "rgba(255,255,255,0.7)", marginBottom: 48,
         position: "relative",
       }}>
         <span style={{ color: "#C9A96E", fontWeight: 700 }}>05</span>
@@ -94,8 +110,8 @@ export default function SkillsMarquee() {
               fontWeight: row.weight,
               fontStyle: row.italic ? "italic" : "normal",
               color: row.prominent
-                ? "rgba(240,235,227,0.96)"
-                : "rgba(255,255,255,0.07)",
+                ? "rgba(255,255,255,0.96)"
+                : "rgba(255,255,255,0.15)",
               letterSpacing: "-0.02em",
               whiteSpace: "nowrap",
               willChange: "transform",
@@ -125,11 +141,11 @@ export default function SkillsMarquee() {
       </div>
 
       {/* Bottom wave */}
-      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" style={{
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style={{
         position: "absolute", bottom: -1, left: 0, right: 0,
-        width: "100%", height: 90, zIndex: 10,
+        width: "100%", height: 120, zIndex: 10,
       }}>
-        <path d="M0,45 C600,0 840,90 1440,45 L1440,90 L0,90 Z" fill="#080808" />
+        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#e8f5e9" />
       </svg>
     </section>
   );

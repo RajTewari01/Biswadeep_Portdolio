@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import GamifiedPopup from "./GamifiedPopup";
+import { useGame } from "./game/GameContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +28,28 @@ export default function ParallaxHero() {
   const textRef2 = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const [scrollY, setScrollY] = useState(0);
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupConfig, setPopupConfig] = useState({ title: "", message: "", href: "", download: false, isGameTrigger: false });
+  const { enterGameMode } = useGame();
+
+  const handleConfirm = () => {
+    setShowPopup(false);
+    if (popupConfig.isGameTrigger) {
+      enterGameMode();
+    } else if (popupConfig.download) {
+      const link = document.createElement("a");
+      link.href = popupConfig.href;
+      link.download = "Biswadeep_Tewari_CV.pdf";
+      link.click();
+    } else if (popupConfig.href) {
+      window.location.href = popupConfig.href;
+    }
+  };
+
+  const handleCancel = () => {
+    setShowPopup(false);
+  };
 
   // ─── Parallax scroll listener ─────────────────────────────────────────
   useEffect(() => {
@@ -56,6 +80,7 @@ export default function ParallaxHero() {
       }
 
       if (splitText2 && splitText2.length > 0) {
+        // Use display: none to physically collapse letters so the cursor follows
         const typeTl = gsap.timeline({ repeat: -1, delay: 1.5 });
         typeTl.fromTo(
           splitText2,
@@ -76,8 +101,7 @@ export default function ParallaxHero() {
         let i = 0;
         const typeWriter = () => {
           if (i < textToType.length && subtextRef.current) {
-            const char = textToType.charAt(i);
-            subtextRef.current.innerHTML += char === ' ' ? '&nbsp;' : char;
+            subtextRef.current.innerHTML += textToType.charAt(i);
             i++;
             setTimeout(typeWriter, 18);
           }
@@ -118,21 +142,53 @@ export default function ParallaxHero() {
             boxShadow: scrollY > 50 ? "0 40px 100px rgba(0,0,0,0.8)" : "none",
           }}
         >
-          {/* Full bleed city image */}
-          <img src={IMG_HERO} alt="" style={{
-            position: "absolute", inset: "-8% 0",
-            width: "100%", height: "116%",
-            objectFit: "cover", objectPosition: "center top",
+          {/* Apple/Pinterest Soft Light Mesh Gradient */}
+          <div style={{
+            position: "absolute", inset: "-10% -10%",
+            backgroundColor: "#F8FAFC", // Clean off-white slate base
+            overflow: "hidden", zIndex: 0,
+          }}>
+            {/* Soft sky blue top right */}
+            <div style={{
+              position: "absolute", width: "80vw", height: "80vw",
+              top: "-20%", right: "-10%",
+              background: "#E0F2FE",
+              filter: "blur(140px)", borderRadius: "50%", opacity: 0.8,
+            }} />
+            
+            {/* Soft pastel pink bottom left */}
+            <div style={{
+              position: "absolute", width: "60vw", height: "60vw",
+              bottom: "-10%", left: "-10%",
+              background: "#FCE7F3",
+              filter: "blur(120px)", borderRadius: "50%", opacity: 0.7,
+            }} />
+
+            {/* Glowing mint center */}
+            <div style={{
+              position: "absolute", width: "70vw", height: "70vw",
+              top: "20%", left: "20%",
+              background: "#D1FAE5",
+              filter: "blur(140px)", borderRadius: "50%", opacity: 0.5,
+            }} />
+          </div>
+
+          {/* Subtle clean grid */}
+          <div style={{
+            position: "absolute", inset: 0, opacity: 0.03,
+            backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+            pointerEvents: "none", zIndex: 1,
           }} />
 
-          {/* Vignettes */}
+          {/* Professional Circuit Board Pattern Overlay */}
           <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.8) 100%)",
-          }} />
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 40%, rgba(0,0,0,0.45) 100%)",
+            position: "absolute", inset: 0, opacity: 0.25,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h20v20h-20zM40 40h20v20h-20zM70 70h20v20h-20z' fill='none' stroke='%230F172A' stroke-width='1' stroke-opacity='0.1'/%3E%3Cpath d='M20 20 l 20 20 M50 50 l 20 20' stroke='%230F172A' stroke-width='1' stroke-opacity='0.1'/%3E%3Ccircle cx='10' cy='10' r='2' fill='%230F172A' fill-opacity='0.2'/%3E%3Ccircle cx='40' cy='40' r='2' fill='%230F172A' fill-opacity='0.2'/%3E%3Ccircle cx='70' cy='70' r='2' fill='%230F172A' fill-opacity='0.2'/%3E%3C/svg%3E")`,
+            backgroundSize: "100px 100px",
+            pointerEvents: "none", zIndex: 1,
+            maskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)",
+            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%)"
           }} />
 
           {/* Grain */}
@@ -149,29 +205,24 @@ export default function ParallaxHero() {
             borderRadius: 4, pointerEvents: "none",
           }} />
 
-          {/* Top bar removed to prevent overlap with the actual global Navbar.tsx */}
-
           {/* Hero content */}
-          <div className="absolute left-0 right-0 bottom-[10vh] md:bottom-0 px-4 md:px-[52px] pb-4 md:pb-[52px] max-w-[100vw] overflow-hidden">
+          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden" style={{ paddingTop: "8vh" }}>
             <div className="fade-in" style={{
               display: "flex", alignItems: "center", gap: 14,
-              marginBottom: 18,
+              marginBottom: 32,
+              background: "#ffffff", padding: "6px 24px 6px 6px", borderRadius: 40,
+              boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
+              border: "1px solid rgba(0,0,0,0.03)"
             }}>
-              <div className="relative w-11 h-11 rounded-full overflow-hidden border border-white/15 shrink-0" style={{ boxShadow: "0 0 20px rgba(99,102,241,0.15)" }}>
+              <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
                 <Image src="/profile.jpg" alt="Biswadeep Tewari" width={64} height={64} className="object-cover w-full h-full" priority />
               </div>
-              <div>
-                <p style={{ fontSize: 13, color: "white", fontWeight: 500 }}>Biswadeep Tewari</p>
-                <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 2 }}>
-                  <div style={{ width: 6, height: 6, background: "#34d399", borderRadius: "50%", boxShadow: "0 0 8px rgba(52,211,153,0.8)" }} />
-                  <p style={{ fontSize: 10, color: "rgba(255,255,255,0.8)", letterSpacing: "0.15em", textTransform: "uppercase", fontFamily: "monospace" }}>Available for work</p>
-                </div>
-              </div>
+              <p style={{ fontSize: 18, color: "#111", fontFamily: "var(--font-pacifico), cursive", fontWeight: 400, transform: "translateY(-1px)" }}>Biswadeep Tewari</p>
             </div>
 
             <h1
               ref={textRef1}
-              className="font-playfair text-[clamp(42px,11vw,108px)] font-black text-white leading-[0.88] tracking-[-0.025em] mb-[2px] md:mb-1 flex overflow-hidden fade-in fd2"
+              className="font-playfair text-[clamp(48px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
             >
               {"BISWADEEP".split("").map((char, i) => (
                 <span key={`first-${i}`} className="char-first inline-block">{char}</span>
@@ -179,38 +230,48 @@ export default function ParallaxHero() {
             </h1>
             <h1
               ref={textRef2}
-              className="font-playfair text-[clamp(42px,11vw,108px)] font-black leading-[0.88] tracking-[-0.025em] mb-3 md:mb-[30px] flex flex-wrap overflow-hidden"
+              className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
             >
               {"TEWARI".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char-last inline-block opacity-0" style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
+                <span key={`last-${i}`} className="char-last inline-block opacity-0" style={{ display: "none", color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
               ))}
-              <span className="char-last inline-block opacity-0" style={{ color: "#6366f1" }}>.</span>
-              <span className="inline-block cursor-blink ml-1 font-light" style={{ color: "#818cf8" }}>|</span>
+              <span className="char-last inline-block opacity-0" style={{ color: "#0F172A" }}>.</span>
+              <span className="inline-block cursor-blink ml-1 font-light" style={{ color: "#0F172A" }}>|</span>
             </h1>
 
             <p
               ref={subtextRef}
               className="fade-in fd3"
               style={{
-                color: "rgba(255,255,255,0.9)", fontSize: 14, minHeight: 50,
-                width: "100%", maxWidth: 520, boxSizing: "border-box", wordBreak: "break-word",
-                fontWeight: 300, lineHeight: 1.7,
-                background: "rgba(0,0,0,0.3)", backdropFilter: "blur(12px)",
-                padding: "12px 16px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.05)",
+                color: "#222", fontSize: "clamp(16px, 1.8vw, 24px)",
+                width: "100%", maxWidth: 800, boxSizing: "border-box", wordBreak: "break-word",
+                fontWeight: 500, lineHeight: 1.6, textAlign: "left",
               }}
             />
 
-            {/* Social Links */}
+            {/* Social Links - Cupertino iOS Style */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 2.5 }}
-              className="flex flex-wrap items-center gap-[6px] md:gap-3 mt-3 md:mt-6"
+              className="flex flex-wrap justify-start items-center gap-3 md:gap-4 mt-8 md:mt-12"
             >
               {[
-                { href: "https://www.linkedin.com/in/raj-tewari-9a93212a3/", label: "LinkedIn" },
-                { href: "https://github.com/RajTewari01", label: "GitHub" },
-                { href: "mailto:mericans24@gmail.com", label: "Email" },
+                { 
+                  href: "https://www.linkedin.com/in/raj-tewari-9a93212a3/", 
+                  label: "LinkedIn",
+                  icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                },
+                { 
+                  href: "https://github.com/RajTewari01", 
+                  label: "GitHub",
+                  icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                },
+                { 
+                  href: "mailto:mericans24@gmail.com", 
+                  label: "Email",
+                  icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                },
               ].map((item) => (
                 <a
                   key={item.label}
@@ -218,100 +279,121 @@ export default function ParallaxHero() {
                   target={item.href.startsWith("mailto") ? undefined : "_blank"}
                   rel="noreferrer"
                   style={{
-                    padding: "8px 20px", borderRadius: 24,
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    background: "rgba(255,255,255,0.02)", backdropFilter: "blur(8px)",
-                    color: "rgba(255,255,255,0.6)", fontSize: 10,
-                    letterSpacing: "0.15em", textTransform: "uppercase",
-                    fontFamily: "monospace",
-                    transition: "all 0.3s ease",
+                    padding: "16px 32px", borderRadius: 40,
+                    background: "#FFFFFF",
+                    color: "#111", fontSize: 15,
+                    fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                    transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                    display: "flex", alignItems: "center", gap: 10,
                   }}
                   onMouseEnter={(e) => { 
-                    e.currentTarget.style.background = "rgba(201,169,110,0.15)"; 
-                    e.currentTarget.style.borderColor = "#C9A96E"; 
-                    e.currentTarget.style.color = "#C9A96E"; 
+                    e.currentTarget.style.transform = "scale(1.05)";
+                    e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                   }}
                   onMouseLeave={(e) => { 
-                    e.currentTarget.style.background = "rgba(255,255,255,0.02)"; 
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; 
-                    e.currentTarget.style.color = "rgba(255,255,255,0.6)"; 
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                   }}
                 >
+                  {item.icon}
                   {item.label}
                 </a>
               ))}
               <a
                 href="/hire"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPopupConfig({
+                    title: "",
+                    message: "Are you ready to discuss a project and hire me?",
+                    href: "/hire",
+                    download: false,
+                    isGameTrigger: false
+                  });
+                  setShowPopup(true);
+                }}
                 style={{
-                  padding: "8px 20px", borderRadius: 24,
-                  border: "1px solid #C9A96E",
-                  background: "rgba(201,169,110,0.15)", backdropFilter: "blur(8px)",
-                  color: "#C9A96E", fontSize: 10,
-                  letterSpacing: "0.15em", textTransform: "uppercase",
-                  fontFamily: "monospace", fontWeight: 700,
-                  transition: "all 0.3s ease",
+                  padding: "16px 32px", borderRadius: 40,
+                  background: "#FFFFFF",
+                  color: "#111", fontSize: 15,
+                  fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                  display: "flex", alignItems: "center", gap: 10,
+                  cursor: "pointer"
                 }}
                 onMouseEnter={(e) => { 
-                  e.currentTarget.style.background = "rgba(201,169,110,0.3)"; 
-                  e.currentTarget.style.boxShadow = "0 0 15px rgba(201,169,110,0.2)";
+                  e.currentTarget.style.transform = "scale(1.05)";
+                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                 }}
                 onMouseLeave={(e) => { 
-                  e.currentTarget.style.background = "rgba(201,169,110,0.15)"; 
-                  e.currentTarget.style.boxShadow = "none";
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                 }}
               >
-                🚀 Hire Me
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                Hire Me
               </a>
               <a
                 href="/biswadeep_tewari_cv_placeholder.pdf"
-                download="Biswadeep_Tewari_CV.pdf"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPopupConfig({
+                    title: "",
+                    message: "Would you like to download my CV?",
+                    href: "/biswadeep_tewari_cv_placeholder.pdf",
+                    download: true,
+                    isGameTrigger: false
+                  });
+                  setShowPopup(true);
+                }}
                 style={{
-                  padding: "8px 20px", borderRadius: 24,
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "rgba(255,255,255,0.02)", backdropFilter: "blur(8px)",
-                  color: "rgba(255,255,255,0.6)", fontSize: 10,
-                  letterSpacing: "0.15em", textTransform: "uppercase",
-                  fontFamily: "monospace",
-                  transition: "all 0.3s ease",
+                  padding: "16px 32px", borderRadius: 40,
+                  background: "#FFFFFF",
+                  color: "#111", fontSize: 15,
+                  fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                  display: "flex", alignItems: "center", gap: 10,
+                  cursor: "pointer"
                 }}
                 onMouseEnter={(e) => { 
-                  e.currentTarget.style.background = "rgba(201,169,110,0.15)"; 
-                  e.currentTarget.style.borderColor = "#C9A96E"; 
-                  e.currentTarget.style.color = "#C9A96E"; 
+                  e.currentTarget.style.transform = "scale(1.05)";
+                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                 }}
                 onMouseLeave={(e) => { 
-                  e.currentTarget.style.background = "rgba(255,255,255,0.02)"; 
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; 
-                  e.currentTarget.style.color = "rgba(255,255,255,0.6)"; 
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                 }}
               >
-                ⬇ Download CV
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download CV
               </a>
               <a
                 href="https://www.buymeacoffee.com/biswadeep"
                 target="_blank"
                 rel="noreferrer"
                 style={{
-                  padding: "8px 20px", borderRadius: 24,
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  background: "rgba(255,255,255,0.02)", backdropFilter: "blur(8px)",
-                  color: "rgba(255,255,255,0.6)", fontSize: 10,
-                  letterSpacing: "0.15em", textTransform: "uppercase",
-                  fontFamily: "monospace", fontWeight: 700,
-                  transition: "all 0.3s ease",
+                  padding: "16px 32px", borderRadius: 40,
+                  background: "#FFFFFF",
+                  color: "#111", fontSize: 15,
+                  fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                  display: "flex", alignItems: "center", gap: 10,
                 }}
                 onMouseEnter={(e) => { 
-                  e.currentTarget.style.background = "rgba(201,169,110,0.15)"; 
-                  e.currentTarget.style.borderColor = "#C9A96E"; 
-                  e.currentTarget.style.color = "#C9A96E"; 
+                  e.currentTarget.style.transform = "scale(1.05)";
+                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                 }}
                 onMouseLeave={(e) => { 
-                  e.currentTarget.style.background = "rgba(255,255,255,0.02)"; 
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; 
-                  e.currentTarget.style.color = "rgba(255,255,255,0.6)"; 
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                 }}
               >
-                ☕ Fund The Build
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                Fund The Build
               </a>
             </motion.div>
 
@@ -320,7 +402,7 @@ export default function ParallaxHero() {
               alignItems: "center", gap: 10,
               marginTop: 24,
               fontFamily: "monospace", fontSize: 9,
-              color: "rgba(255,255,255,0.22)", letterSpacing: "0.2em",
+              color: "#888", letterSpacing: "0.2em",
             }}>
               <span>SCROLL TO EXPLORE</span>
               <span style={{ color: "#C9A96E", fontSize: 14 }}>↓</span>
@@ -332,12 +414,12 @@ export default function ParallaxHero() {
       {/* ── S2: SLIDES OVER HERO ── */}
       <div style={{
         position: "relative", height: "100vh",
-        background: "#F4EEE4", zIndex: 2, overflow: "hidden",
+        background: "#e8f5e9", zIndex: 2, overflow: "hidden",
       }}>
         {/* Diagonal top */}
         <div style={{
           position: "absolute", top: -1, left: 0, right: 0, height: 100,
-          background: "#F4EEE4",
+          background: "#e8f5e9",
           clipPath: "polygon(0 100px, 100% 0, 100% 100%, 0 100%)",
           zIndex: 5,
         }} />
@@ -346,29 +428,30 @@ export default function ParallaxHero() {
           height: "100%", alignItems: "center",
         }}>
           {/* Text */}
+          {/* Text */}
           <div className="w-full md:w-[55%] pt-[100px] md:pt-[60px]" style={{
             display: "flex", flexDirection: "column",
             justifyContent: "center",
-            paddingLeft: "clamp(24px, 6vw, 56px)",
-            paddingRight: "clamp(24px, 6vw, 60px)",
+            paddingLeft: "clamp(24px, 6vw, 10vw)",
+            paddingRight: "clamp(24px, 6vw, 8vw)",
             paddingBottom: "clamp(32px, 6vw, 60px)",
           }}>
             <div style={{
               display: "flex", alignItems: "center", gap: 10,
-              fontFamily: "monospace", fontSize: 10, letterSpacing: "0.28em",
+              fontFamily: "monospace", fontSize: "clamp(12px, 1.5vw, 15px)", letterSpacing: "0.28em",
               color: "rgba(0,0,0,0.35)", marginBottom: "clamp(12px, 2vw, 22px)",
             }}>
               <span style={{ color: "#C9A96E", fontWeight: 700 }}>01</span>
-              <span style={{ width: 28, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
+              <span style={{ width: 40, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
               <span>THE ARCHITECT</span>
             </div>
 
             <h2 style={{
               fontFamily: "var(--font-playfair), 'Playfair Display', serif",
-              fontSize: "clamp(36px, 10vw, 64px)",
+              fontSize: "clamp(48px, 6vw, 110px)",
               fontWeight: 700, color: "#111",
               lineHeight: 1.05, letterSpacing: "-0.02em",
-              marginBottom: "clamp(20px, 4vw, 32px)",
+              marginBottom: "clamp(20px, 4vw, 40px)",
               wordBreak: "break-word",
             }}>
               Building robust<br />
@@ -377,19 +460,19 @@ export default function ParallaxHero() {
             </h2>
 
             <p style={{
-              fontFamily: "monospace", fontSize: "clamp(12px, 3.2vw, 13px)", color: "#444",
-              lineHeight: 1.8, maxWidth: 460,
-              borderLeft: "2px solid #C9A96E", paddingLeft: 18,
+              fontFamily: "monospace", fontSize: "clamp(15px, 1.8vw, 22px)", color: "#444",
+              lineHeight: 1.8, maxWidth: "100%", paddingRight: "4vw",
+              borderLeft: "3px solid #C9A96E", paddingLeft: 24,
             }}>
               I build production-grade applications that scale.
-              From architecting language model data pipelines and serving computer vision APIs, 
+              From architecting language model data pipelines and serving computer vision APIs,
               to shipping performant cross-platform mobile apps that users love.
             </p>
 
             {/* Location info */}
             <div style={{
-              marginTop: "clamp(24px, 4vw, 32px)", fontFamily: "monospace",
-              fontSize: 10, color: "#888", letterSpacing: "0.15em",
+              marginTop: "clamp(32px, 4vw, 48px)", fontFamily: "monospace",
+              fontSize: "clamp(11px, 1.2vw, 14px)", color: "#888", letterSpacing: "0.15em",
             }}>
               <span>Location: IND · Lat: 22.5726° N · Lon: 88.3639° E</span>
             </div>
@@ -407,10 +490,10 @@ export default function ParallaxHero() {
                 .architect-img-wrap { aspect-ratio: auto; height: 100vh; border-radius: 24px 0 0 24px; box-shadow: -20px 0 60px rgba(0,0,0,0.12); margin: 0; }
               }
             `}</style>
-            
+
             <div className="relative overflow-hidden architect-img-container" style={{
-               borderRadius: "16px",
-               boxShadow: "0 24px 50px rgba(0,0,0,0.15)",
+              borderRadius: "16px",
+              boxShadow: "0 24px 50px rgba(0,0,0,0.15)",
             }}>
               <style>{`
                 @media (min-width: 768px) {
@@ -440,9 +523,19 @@ export default function ParallaxHero() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 4,
         }}>
-           <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#080808" />
+          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#e8f5e9" />
         </svg>
       </div>
+
+      <GamifiedPopup
+        isOpen={showPopup}
+        title={popupConfig.title}
+        message={popupConfig.message}
+        confirmText="Continue"
+        cancelText="Cancel"
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
     </div>
   );
 }
