@@ -316,7 +316,7 @@ export default function Navbar() {
             isOpen={true}
             title="Initializing..."
             message="Loading the Gamified World..."
-            confirmText="PLEASE WAIT"
+            confirmText=""
             cancelText=""
             onConfirm={() => {}}
             onCancel={() => {}}

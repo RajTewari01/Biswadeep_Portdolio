@@ -112,20 +112,26 @@ export default function GamifiedPopup({
             </div>
 
             {/* Buttons */}
-            <div className="flex w-full gap-3 justify-center">
-              <button
-                onClick={onCancel}
-                className="px-5 py-2 rounded-lg bg-[#111111] border border-[#C9A96E] text-white font-bold hover:bg-[#C9A96E] hover:text-[#18181b] transition-colors text-sm"
-              >
-                {cancelText}
-              </button>
-              <button
-                onClick={handleConfirm}
-                className="px-5 py-2 rounded-lg bg-[#111111] border border-[#C9A96E] text-[#C9A96E] font-bold hover:bg-[#C9A96E] hover:text-[#18181b] transition-colors shadow-[0_0_15px_rgba(201,169,110,0.2)] text-sm"
-              >
-                {confirmText}
-              </button>
-            </div>
+            {(confirmText || cancelText) && (
+              <div className="flex w-full gap-3 justify-center">
+                {cancelText && (
+                  <button
+                    onClick={onCancel}
+                    className="px-5 py-2 rounded-lg bg-[#111111] border border-[#C9A96E] text-white font-bold hover:bg-[#C9A96E] hover:text-[#18181b] transition-colors text-sm"
+                  >
+                    {cancelText}
+                  </button>
+                )}
+                {confirmText && (
+                  <button
+                    onClick={handleConfirm}
+                    className="px-5 py-2 rounded-lg bg-[#111111] border border-[#C9A96E] text-[#C9A96E] font-bold hover:bg-[#C9A96E] hover:text-[#18181b] transition-colors shadow-[0_0_15px_rgba(201,169,110,0.2)] text-sm"
+                  >
+                    {confirmText}
+                  </button>
+                )}
+              </div>
+            )}
             </div>
           </motion.div>
         </div>
