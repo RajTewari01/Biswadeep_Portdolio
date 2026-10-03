@@ -14,6 +14,23 @@ const LINKS = [
   { label: "Google Skills", href: "https://www.skills.google/public_profiles/2d5e1957-0650-40f5-8b71-e8b7eabed363", color: "#34A853" },
   { label: "Google Dev", href: "https://g.dev/BiswadeepTewari", color: "#4285F4" },
   { label: "Email", href: "mailto:mericans24@gmail.com", color: "#22d3ee" },
+  { 
+    label: (
+      <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="8" y1="6" x2="21" y2="6"></line>
+          <line x1="8" y1="12" x2="21" y2="12"></line>
+          <line x1="8" y1="18" x2="21" y2="18"></line>
+          <line x1="3" y1="6" x2="3.01" y2="6"></line>
+          <line x1="3" y1="12" x2="3.01" y2="12"></line>
+          <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        </svg>
+        LinkTree
+      </span>
+    ), 
+    href: "https://linktree-by-raj.vercel.app", 
+    color: "#43E660" 
+  },
 ];
 
 export default function ContactSection() {
@@ -110,7 +127,7 @@ export default function ContactSection() {
       }}>
         {LINKS.map((link) => (
           <a
-            key={link.label}
+            key={link.href}
             href={link.href}
             target={link.href.startsWith("mailto") ? undefined : "_blank"}
             rel="noreferrer"
