@@ -1,19 +1,19 @@
 # NEXUS — Enterprise Portfolio Platform
 
-> **A high-performance, full-stack portfolio engineered on Next.js 16 (App Router), React 19, and Three.js — featuring 3D WebGL rendering, cinematic scroll animations, a fortified 3-Factor Authentication admin vault, and edge-deployed serverless APIs.**
+> **A high-performance, full-stack portfolio engineered on Next.js 16 (App Router), React 19, and Three.js — featuring 3D WebGL rendering, cinematic scroll animations, gamified interactive popups, a fortified 3-Factor Authentication admin vault, and edge-deployed serverless APIs.**
 
-[![Build](https://github.com/RajTewari01/portfolio_main/actions/workflows/build.yml/badge.svg)](https://github.com/RajTewari01/portfolio_main/actions/workflows/build.yml)
-[![Lint](https://github.com/RajTewari01/portfolio_main/actions/workflows/lint.yml/badge.svg)](https://github.com/RajTewari01/portfolio_main/actions/workflows/lint.yml)
-[![Security](https://github.com/RajTewari01/portfolio_main/actions/workflows/security.yml/badge.svg)](https://github.com/RajTewari01/portfolio_main/actions/workflows/security.yml)
+[![Build](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/build.yml/badge.svg)](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/build.yml)
+[![Lint](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/lint.yml/badge.svg)](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/lint.yml)
+[![Security](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/security.yml/badge.svg)](https://github.com/RajTewari01/Biswadeep_Portdolio/actions/workflows/security.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-C9A96E.svg)](LICENSE)
 
-**Live** → [biswadeeptewari.vercel.app](https://biswadeeptewari.vercel.app)
+**Live** → [biswadeep.vercel.app](https://biswadeep.vercel.app)
 
 ---
 
 ## Why Nexus?
 
-Most portfolios are static HTML templates. **Nexus** is an architected platform — a showcase of real engineering depth, not just design polish. Every animation is physics-driven, every API route is edge-optimized, and the admin dashboard is protected by hardware-level biometrics.
+Most portfolios are static HTML templates. **Nexus** is an architected platform — a showcase of real engineering depth, not just design polish. Every animation is physics-driven, every API route is edge-optimized, the admin dashboard is protected by hardware-level biometrics, and user interactions are gamified with custom 8-bit style popups and mascots.
 
 ---
 
@@ -26,6 +26,7 @@ graph TB
         HERO["3D WebGL Canvas<br/>React Three Fiber + GLSL"]
         SCROLL["Scroll Engine<br/>Lenis + GSAP ScrollTrigger"]
         UI["App Router Pages<br/>Next.js 16 + React 19"]
+        GAME["Gamified Elements<br/>Custom Cursors + 8-bit Popups"]
     end
 
     subgraph Edge["Edge API Layer"]
@@ -53,6 +54,7 @@ graph TB
     Edge --> Data
     UI --> HERO
     UI --> SCROLL
+    UI --> GAME
     AUTH_API --> F1
     AUTH_API --> F2
     OTP_API --> F3
@@ -64,12 +66,14 @@ graph TB
 
 ## Core Modules
 
-### Cinematic Frontend
+### Cinematic Frontend & Gamification
 
 | Feature | Implementation |
 |---|---|
 | **3D Background** | React Three Fiber + custom GLSL vertex/fragment shaders with ambient point lights |
 | **Parallax Hero** | Perspective-driven sticky scroll with dynamic scale, blur, and rotation transforms |
+| **Gamified Popups** | Retro 8-bit style UI overlays featuring animated mascots (CSS Keyframes + GSAP) |
+| **Custom Cursor** | Hover-aware interactive cursor with magnetic physics |
 | **SVG Mask Reveal** | `clip-path: circle()` with eased scroll-driven expansion using `getBoundingClientRect()` |
 | **Infinite Marquee** | CSS `@keyframes` with `IntersectionObserver` trigger — zero JS scroll dependencies |
 | **Smooth Scroll** | Lenis scroll engine with custom easing: `1.001 - 2^(-10t)` |
@@ -135,8 +139,8 @@ sequenceDiagram
 
 ```bash
 # Clone
-git clone https://github.com/RajTewari01/portfolio_main.git
-cd portfolio_main
+git clone https://github.com/RajTewari01/Biswadeep_Portdolio.git
+cd Biswadeep_Portdolio
 
 # Install
 npm ci
@@ -200,10 +204,11 @@ graph LR
 
 ## Project Structure
 
-```
+```text
 ├── .github/workflows/     # CI/CD pipeline definitions
 ├── public/
 │   ├── certificates/      # Static PDF credential vault
+│   ├── bruno-game/        # Static assets for gamified 8-bit mascot
 │   └── profile.jpg        # Hero section avatar
 ├── scripts/
 │   └── ingest_vault.js    # Supabase certificate ingestion
@@ -214,13 +219,18 @@ graph LR
 │   │   ├── hire/          # Contact & hiring page
 │   │   └── page.tsx       # Root composition
 │   ├── components/
+│   │   ├── game/          # Game logic & legacy context for retro popups
+│   │   ├── Navbar         # Main responsive navigation
 │   │   ├── ParallaxHero   # 3D sticky scroll hero
 │   │   ├── AboutSection   # SVG mask reveal + skills
 │   │   ├── ProjectsSection # Dynamic project grid
 │   │   ├── CertificatesSection # PDF vault + pagination
+│   │   ├── GamifiedPopup  # Retro 8-bit modal overlay
+│   │   ├── CustomCursor   # Hover-aware interactive magnetic cursor
+│   │   ├── SectionDivider # Fluid SVG wave dividers
 │   │   ├── SkillsMarquee  # Infinite CSS marquee
 │   │   ├── ThreeCanvas    # WebGL background
-│   │   └── ContactSection # Form + social links
+│   │   └── ContactSection # Form + social links (including external LinkTree)
 │   └── lib/
 │       ├── supabase.ts    # Database client
 │       └── firebase.ts    # Auth client
