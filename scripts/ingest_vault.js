@@ -30,7 +30,7 @@ function determineMetadata(filename) {
     category = "google_skill_badge";
   } else if (lower.includes('google')) {
     issuer = "Google Cloud";
-    category = "google";
+    category = "other";
   } else if (lower.includes('ai fluency')) {
     issuer = "AI Fluency";
     category = "ai_fluency";
