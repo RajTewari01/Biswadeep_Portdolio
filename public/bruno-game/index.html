@@ -125,8 +125,8 @@
 
     <!-- Mobile Joystick Overlay -->
     <style>
-        /* Aggressively hide original game's touch controls */
-        body > div:not(.threejs-journey):not(.env-controls):not(#joystickZone) {
+        /* Hide original game's touch controls by matching likely classes */
+        [class*="touch"], [class*="joystick"]:not(.mobile-joystick-zone), [class*="controls"]:not(.env-controls) {
             display: none !important;
         }
 
