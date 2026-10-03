@@ -76,7 +76,7 @@ export default function GamifiedPopup({
             `}</style>
 
             {/* Bubble 1: Message */}
-            <div className="bg-[#111111] rounded-full px-8 py-4 mb-8 shadow-2xl relative border-2 border-[#C9A96E] w-auto inline-block max-w-[95%]">
+            <div className="bg-[#111111] rounded-3xl px-8 py-4 mb-8 shadow-2xl relative border-2 border-[#C9A96E] w-auto inline-block max-w-[95%] break-words">
               <p className="text-white text-center font-bold text-[17px] tracking-wide" style={{ fontFamily: "'Comic Neue', cursive" }}>
                 {title && (
                   <>
