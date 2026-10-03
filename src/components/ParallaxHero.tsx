@@ -215,7 +215,7 @@ export default function ParallaxHero() {
               border: "1px solid rgba(0,0,0,0.03)"
             }}>
               <div className="relative w-10 h-10 rounded-full overflow-hidden shrink-0">
-                <Image src="/profile.jpg" alt="Biswadeep Tewari" width={64} height={64} className="object-cover w-full h-full" priority />
+                <Image src="/biswadeep_google.png" alt="Biswadeep Tewari" width={64} height={64} className="object-cover w-full h-full" priority />
               </div>
               <p style={{ fontSize: 18, color: "#111", fontFamily: "var(--font-pacifico), cursive", fontWeight: 400, transform: "translateY(-1px)" }}>Biswadeep Tewari</p>
             </div>
@@ -500,7 +500,7 @@ export default function ParallaxHero() {
                   .architect-img-container { border-radius: 24px 0 0 24px !important; margin-top: 40px; margin-bottom: 80px; }
                 }
               `}</style>
-              <Image src="/profile.jpg" alt="Biswadeep Tewari" width={800} height={600}
+              <Image src="/biswadeep_google.png" alt="Biswadeep Tewari" width={800} height={600}
                 className="architect-img-wrap"
               />
               <div style={{
