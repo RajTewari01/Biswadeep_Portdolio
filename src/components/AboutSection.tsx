@@ -222,7 +222,7 @@ export default function AboutSection() {
           </div>
 
           {/* Top Row: Stats (Bento style) */}
-          <div ref={statsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-6 md:gap-8 mb-8">
+          <div ref={statsRef} className="grid grid-cols-2 gap-4 md:gap-8 mb-6 md:mb-8">
             <div style={{
               background: "#ffffff", borderRadius: 24, padding: "clamp(32px, 5vw, 64px)",
               boxShadow: "0 10px 40px rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.02)",
