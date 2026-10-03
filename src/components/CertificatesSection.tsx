@@ -127,6 +127,17 @@ export default function CertificatesSection() {
   // ─── Fetch from Supabase ─────────────────────────────────────────────
   useEffect(() => {
     (async () => {
+      const processFallbacks = () => fallbackCertificates.map(cert => {
+        if (!cert.image_url && cert.credential_url) {
+          const match = cert.credential_url.match(/#page=(\d+)/);
+          if (match) {
+            const pageNum = parseInt(match[1], 10);
+            return { ...cert, image_url: `/cert_pages/page_${pageNum.toString().padStart(2, '0')}.png` };
+          }
+        }
+        return cert;
+      });
+
       try {
         const { data, error } = await supabase
           .from("certificates")
@@ -137,11 +148,11 @@ export default function CertificatesSection() {
         if (data && data.length > 0) {
           setCertificates(data as Certificate[]);
         } else {
-          setCertificates(fallbackCertificates);
+          setCertificates(processFallbacks());
         }
       } catch {
         console.warn("Supabase fetch failed, using fallback certificates");
-        setCertificates(fallbackCertificates);
+        setCertificates(processFallbacks());
       } finally {
         setLoaded(true);
       }
@@ -323,7 +334,24 @@ export default function CertificatesSection() {
               </div>
 
               {/* Live PDF Preview */}
-              {cert.credential_url ? (
+              {cert.image_url ? (
+                <div style={{
+                  width: "100%", height: 160, borderRadius: 8,
+                  marginBottom: 16, overflow: "hidden",
+                  border: `1px solid ${getIssuerColor(cert.issuer)}30`,
+                  position: "relative",
+                  background: "#fff",
+                  display: "flex", alignItems: "center", justifyContent: "center"
+                }}>
+                  <img 
+                    src={cert.image_url} 
+                    alt={cert.title}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                  {/* Invisible overlay to catch clicks */}
+                  <div style={{ position: "absolute", inset: 0, zIndex: 10 }} />
+                </div>
+              ) : cert.credential_url ? (
                 <div style={{
                   width: "100%", height: 160, borderRadius: 8,
                   marginBottom: 16, overflow: "hidden",
