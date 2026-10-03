@@ -125,8 +125,10 @@
 
     <!-- Mobile Joystick Overlay -->
     <style>
-        /* Hide original game's touch controls by matching likely classes */
-        [class*="touch"], [class*="joystick"]:not(.mobile-joystick-zone), [class*="controls"]:not(.env-controls) {
+        /* Safely hide original game's touch controls without breaking the HTML/Body tags */
+        body > div[class*="touch"], 
+        body > div[class*="joystick"]:not(.mobile-joystick-zone), 
+        body > div[class*="controls"]:not(.env-controls) {
             display: none !important;
         }
 
