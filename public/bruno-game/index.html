@@ -125,14 +125,18 @@
 
     <!-- Mobile Joystick Overlay (SVG vectors) -->
     <style>
+        /* Aggressively hide original game's touch controls */
+        body > div:not(.threejs-journey):not(.env-controls):not(#startOverlay):not(#joystickZone) {
+            display: none !important;
+        }
+
         .mobile-joystick-zone {
             display: none;
             position: fixed;
             bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 160px;
-            height: 160px;
+            left: 40px;
+            width: 140px;
+            height: 140px;
             z-index: 9999;
             touch-action: none;
         }
@@ -148,9 +152,20 @@
             top: 50%; left: 50%;
             width: 60px; height: 60px;
             margin-top: -30px; margin-left: -30px;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
             transition: transform 0.05s linear;
         }
+        .joystick-base circle {
+            fill: #ffffff;
+            fill-opacity: 0.15;
+            stroke: #ffffff;
+            stroke-opacity: 0.3;
+            stroke-width: 2;
+        }
+        .joystick-thumb circle {
+            fill: #ffffff;
+            fill-opacity: 0.5;
+        }
+        
         /* Starting Overlay for mobile */
         .mobile-start-overlay {
             display: none;
@@ -213,11 +228,10 @@
 
     <div class="mobile-joystick-zone" id="joystickZone">
         <svg class="joystick-base" viewBox="0 0 160 160">
-            <circle cx="80" cy="80" r="70" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.3" stroke-width="2"/>
+            <circle cx="80" cy="80" r="70" />
         </svg>
         <svg class="joystick-thumb" id="joystickThumb" viewBox="0 0 60 60">
-            <circle cx="30" cy="30" r="28" fill="#C9A96E" />
-            <circle cx="30" cy="30" r="12" fill="#ffffff" fill-opacity="0.4" />
+            <circle cx="30" cy="30" r="28" />
         </svg>
     </div>
 
@@ -232,14 +246,24 @@
         const thumb = document.getElementById('joystickThumb');
         let activeKeys = {};
 
-        function triggerKey(key, type) {
+        function triggerKey(key, keyCode, type) {
             if (type === 'keydown' && !activeKeys[key]) {
                 activeKeys[key] = true;
-                window.dispatchEvent(new KeyboardEvent('keydown', { key: key, code: 'Arrow' + key.replace('Arrow','') }));
+                const ev = new KeyboardEvent('keydown', { key: key, code: 'Key' + key.toUpperCase(), keyCode: keyCode, which: keyCode, bubbles: true });
+                window.dispatchEvent(ev);
+                document.dispatchEvent(ev);
             } else if (type === 'keyup' && activeKeys[key]) {
                 activeKeys[key] = false;
-                window.dispatchEvent(new KeyboardEvent('keyup', { key: key, code: 'Arrow' + key.replace('Arrow','') }));
+                const ev = new KeyboardEvent('keyup', { key: key, code: 'Key' + key.toUpperCase(), keyCode: keyCode, which: keyCode, bubbles: true });
+                window.dispatchEvent(ev);
+                document.dispatchEvent(ev);
             }
+        }
+        
+        function triggerArrow(key, type) {
+            const ev = new KeyboardEvent(type, { key: key, code: key, bubbles: true });
+            window.dispatchEvent(ev);
+            document.dispatchEvent(ev);
         }
 
         let isDragging = false;
@@ -262,7 +286,16 @@
         const endDrag = () => {
             isDragging = false;
             thumb.style.transform = `translate(0px, 0px)`;
-            ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].forEach(k => triggerKey(k, 'keyup'));
+            
+            triggerKey('w', 87, 'keyup');
+            triggerKey('s', 83, 'keyup');
+            triggerKey('a', 65, 'keyup');
+            triggerKey('d', 68, 'keyup');
+            
+            triggerArrow('ArrowUp', 'keyup');
+            triggerArrow('ArrowDown', 'keyup');
+            triggerArrow('ArrowLeft', 'keyup');
+            triggerArrow('ArrowRight', 'keyup');
         };
         zone.addEventListener('touchend', endDrag);
         zone.addEventListener('touchcancel', endDrag);
@@ -282,17 +315,17 @@
             
             const threshold = 15;
             
-            if (dy < -threshold) triggerKey('ArrowUp', 'keydown');
-            else triggerKey('ArrowUp', 'keyup');
+            if (dy < -threshold) { triggerKey('w', 87, 'keydown'); triggerArrow('ArrowUp', 'keydown'); }
+            else { triggerKey('w', 87, 'keyup'); triggerArrow('ArrowUp', 'keyup'); }
             
-            if (dy > threshold) triggerKey('ArrowDown', 'keydown');
-            else triggerKey('ArrowDown', 'keyup');
+            if (dy > threshold) { triggerKey('s', 83, 'keydown'); triggerArrow('ArrowDown', 'keydown'); }
+            else { triggerKey('s', 83, 'keyup'); triggerArrow('ArrowDown', 'keyup'); }
             
-            if (dx < -threshold) triggerKey('ArrowLeft', 'keydown');
-            else triggerKey('ArrowLeft', 'keyup');
+            if (dx < -threshold) { triggerKey('a', 65, 'keydown'); triggerArrow('ArrowLeft', 'keydown'); }
+            else { triggerKey('a', 65, 'keyup'); triggerArrow('ArrowLeft', 'keyup'); }
             
-            if (dx > threshold) triggerKey('ArrowRight', 'keydown');
-            else triggerKey('ArrowRight', 'keyup');
+            if (dx > threshold) { triggerKey('d', 68, 'keydown'); triggerArrow('ArrowRight', 'keydown'); }
+            else { triggerKey('d', 68, 'keyup'); triggerArrow('ArrowRight', 'keyup'); }
         }
     </script>
 </body>
