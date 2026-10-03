@@ -28,7 +28,7 @@ const LINKS = [
         LinkTree
       </span>
     ), 
-    href: "https://linktree-by-raj.vercel.app", 
+    href: "https://link-tree-by-raj.vercel.app", 
     color: "#43E660" 
   },
 ];
