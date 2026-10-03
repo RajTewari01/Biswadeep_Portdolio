@@ -123,10 +123,10 @@
         gtag('config', 'UA-3966601-5')
     </script>
 
-    <!-- Mobile Joystick Overlay (SVG vectors) -->
+    <!-- Mobile Joystick Overlay -->
     <style>
         /* Aggressively hide original game's touch controls */
-        body > div:not(.threejs-journey):not(.env-controls):not(#startOverlay):not(#joystickZone) {
+        body > div:not(.threejs-journey):not(.env-controls):not(#joystickZone) {
             display: none !important;
         }
 
@@ -165,66 +165,7 @@
             fill: #ffffff;
             fill-opacity: 0.5;
         }
-        
-        /* Starting Overlay for mobile */
-        .mobile-start-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(17, 17, 17, 0.95);
-            z-index: 10000;
-            color: #fff;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Comic Neue', sans-serif;
-            text-align: center;
-        }
-        @media (max-width: 768px) {
-            .mobile-start-overlay.is-active { display: flex; }
-        }
-        .start-btn {
-            margin-top: 40px;
-            padding: 16px 40px;
-            background: #C9A96E;
-            color: #111;
-            border: none;
-            border-radius: 40px;
-            font-size: 18px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            box-shadow: 0 0 30px rgba(201, 169, 110, 0.4);
-            cursor: pointer;
-        }
-        
-        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
-        @keyframes spin-fast-reverse { 100% { transform: rotate(-360deg); } }
-        @keyframes pulse-glow { 0%, 100% { filter: drop-shadow(0 0 15px rgba(201,169,110,0.4)); } 50% { filter: drop-shadow(0 0 35px rgba(201,169,110,0.9)); } }
     </style>
-
-    <!-- Start Overlay -->
-    <div class="mobile-start-overlay is-active" id="startOverlay">
-        
-        <!-- Advanced HUD Start Animation -->
-        <div style="position: relative; width: 140px; height: 140px; margin-bottom: 30px; display: flex; justify-content: center; align-items: center; animation: pulse-glow 3s infinite;">
-            <!-- Outer Ring -->
-            <svg style="position: absolute; width: 100%; height: 100%; animation: spin-slow 12s linear infinite;" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="48" fill="none" stroke="#C9A96E" stroke-width="1" stroke-dasharray="2 4 8 4" opacity="0.6"/>
-                <circle cx="50" cy="50" r="44" fill="none" stroke="#C9A96E" stroke-width="2" stroke-dasharray="30 10 10 10" opacity="0.8"/>
-            </svg>
-            <!-- Inner Ring -->
-            <svg style="position: absolute; width: 75%; height: 75%; animation: spin-fast-reverse 8s linear infinite;" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" fill="none" stroke="#C9A96E" stroke-width="3" stroke-dasharray="15 15" opacity="0.9"/>
-            </svg>
-            <!-- Center Car Icon -->
-            <svg style="position: absolute; width: 45%; height: 45%;" viewBox="0 0 24 24" fill="none" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a2 2 0 0 0-1.6-.8H9.3a2 2 0 0 0-1.6.8L5 11l-5.16.86a1 1 0 0 0-.84.99V16h3m10 0a2 2 0 1 1-4 0m4 0a2 2 0 1 0-4 0m-7 0a2 2 0 1 1-4 0m4 0a2 2 0 1 0-4 0"></path>
-            </svg>
-        </div>
-        <h1 style="margin: 0; font-size: 32px; letter-spacing: 4px; text-transform: uppercase;">Digital Realm</h1>
-        <p style="opacity: 0.7; margin-top: 15px; font-size: 16px;">Use the virtual joystick to drive your car.</p>
-        <button class="start-btn" id="startBtn">START ENGINE</button>
-    </div>
 
     <div class="mobile-joystick-zone" id="joystickZone">
         <svg class="joystick-base" viewBox="0 0 160 160">
@@ -236,11 +177,6 @@
     </div>
 
     <script>
-        // Hide Start Overlay
-        document.getElementById('startBtn').addEventListener('click', function() {
-            document.getElementById('startOverlay').classList.remove('is-active');
-        });
-
         // Joystick Logic
         const zone = document.getElementById('joystickZone');
         const thumb = document.getElementById('joystickThumb');
