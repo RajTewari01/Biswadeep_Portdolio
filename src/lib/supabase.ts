@@ -9,7 +9,7 @@ export interface Certificate {
   id: string;
   title: string;
   issuer: string;
-  category: "anthropic" | "google_skill_badge" | "other";
+  category: "anthropic" | "google_skill_badge" | "google" | "other";
   date_earned: string | null;
   credential_url: string | null;
   image_url: string | null;
