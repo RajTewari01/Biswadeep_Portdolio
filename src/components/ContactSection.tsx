@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GamifiedPopup from "./GamifiedPopup";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,8 @@ const LINKS = [
 export default function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupConfig, setPopupConfig] = useState({ title: "", message: "", href: "", confirmText: "", cancelText: "" });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -141,11 +144,21 @@ export default function ContactSection() {
       </div>
 
       {/* Hire Me CTA */}
-      <a
-        href="/hire"
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          setPopupConfig({
+            title: "Hire Me",
+            message: "Are you ready to discuss a project and hire me?",
+            href: "/hire",
+            confirmText: "PROCEED",
+            cancelText: "NOT YET"
+          });
+          setShowPopup(true);
+        }}
         style={{
           marginTop: 48, padding: "16px 40px",
-          borderRadius: 40,
+          borderRadius: 40, cursor: "pointer",
           border: "1px solid #C9A96E",
           background: "rgba(201,169,110,0.15)",
           color: "#C9A96E", fontFamily: "var(--font-syne), sans-serif",
@@ -164,7 +177,7 @@ export default function ContactSection() {
         }}
       >
         CONNECT →
-      </a>
+      </button>
 
       {/* Footer line */}
       <footer style={{
@@ -181,6 +194,19 @@ export default function ContactSection() {
           <span>ENGINEERED WITH ♡ IN KOLKATA</span>
         </div>
       </footer>
+
+      <GamifiedPopup
+        isOpen={showPopup}
+        title={popupConfig.title}
+        message={popupConfig.message}
+        confirmText={popupConfig.confirmText}
+        cancelText={popupConfig.cancelText}
+        onConfirm={() => {
+          setShowPopup(false);
+          window.location.href = popupConfig.href;
+        }}
+        onCancel={() => setShowPopup(false)}
+      />
     </section>
   );
 }

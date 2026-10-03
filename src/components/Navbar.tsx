@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGame } from "./game/GameContext";
+import GamifiedPopup from "./GamifiedPopup";
 
 const NAV_LINKS = [
   {
@@ -58,6 +59,9 @@ export default function Navbar() {
   const [loadingGame, setLoadingGame] = useState(false);
   const [flashActive, setFlashActive] = useState(false);
   const { isGameMode, enterGameMode } = useGame();
+  
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupConfig, setPopupConfig] = useState({ title: "", message: "", href: "", confirmText: "", cancelText: "" });
 
   const handleEnterGameMode = () => {
     setLoadingGame(true);
@@ -135,7 +139,17 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => {
-                  if (link.href.startsWith("/#")) {
+                  if (link.label === "Hire") {
+                    e.preventDefault();
+                    setPopupConfig({
+                      title: "Hire Me",
+                      message: "Are you ready to discuss a project and hire me?",
+                      href: link.href,
+                      confirmText: "PROCEED",
+                      cancelText: "NOT YET"
+                    });
+                    setShowPopup(true);
+                  } else if (link.href.startsWith("/#")) {
                     e.preventDefault();
                     const targetId = link.href.replace("/#", "");
                     const targetEl = document.getElementById(targetId);
@@ -212,9 +226,20 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => {
-                    setMenuOpen(false);
-                    if (link.href.startsWith("/#")) {
+                    if (link.label === "Hire") {
                       e.preventDefault();
+                      setMenuOpen(false);
+                      setPopupConfig({
+                        title: "Hire Me",
+                        message: "Are you ready to discuss a project and hire me?",
+                        href: link.href,
+                        confirmText: "PROCEED",
+                        cancelText: "NOT YET"
+                      });
+                      setShowPopup(true);
+                    } else if (link.href.startsWith("/#")) {
+                      e.preventDefault();
+                      setMenuOpen(false);
                       setTimeout(() => {
                         const targetId = link.href.replace("/#", "");
                         const targetEl = document.getElementById(targetId);
@@ -222,6 +247,8 @@ export default function Navbar() {
                           window.scrollTo({ top: targetEl.offsetTop, behavior: "auto" });
                         }
                       }, 400);
+                    } else {
+                      setMenuOpen(false);
                     }
                   }}
                   initial={{ x: -40, opacity: 0 }}
@@ -350,6 +377,19 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <GamifiedPopup
+        isOpen={showPopup}
+        title={popupConfig.title}
+        message={popupConfig.message}
+        confirmText={popupConfig.confirmText}
+        cancelText={popupConfig.cancelText}
+        onConfirm={() => {
+          setShowPopup(false);
+          window.location.href = popupConfig.href;
+        }}
+        onCancel={() => setShowPopup(false)}
+      />
     </>
   );
 }
