@@ -122,8 +122,8 @@ function GeometricNexus() {
     scrollData.current.y += (scrollData.current.targetY - scrollData.current.y) * 0.05;
     meshRef.current.rotation.y = state.clock.elapsedTime * 0.1 + mouseData.current.x * 0.5 + scrollData.current.y * Math.PI * 2;
     meshRef.current.rotation.x = state.clock.elapsedTime * 0.05 - mouseData.current.y * 0.5 + scrollData.current.y * Math.PI;
-    const baseScale = 0.6;
-    const scaleBreath = baseScale + Math.sin(state.clock.elapsedTime) * 0.05;
+    const baseScale = 0.4;
+    const scaleBreath = baseScale + Math.sin(state.clock.elapsedTime) * 0.03;
     meshRef.current.scale.set(scaleBreath, scaleBreath, scaleBreath);
   });
 

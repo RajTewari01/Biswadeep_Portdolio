@@ -59,8 +59,8 @@ export default function HirePage() {
       <div className="fixed inset-0 z-[1] bg-[#e8f5e9]/40 pointer-events-none" />
       <Navbar />
 
-      <main ref={containerRef} className="relative z-10 min-h-screen pt-32 pb-24 px-6 md:px-12 flex flex-col items-center justify-center">
-        <div className="w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center origin-center">
+      <main ref={containerRef} className="relative z-10 min-h-screen pt-24 pb-8 px-6 md:px-12 flex flex-col items-center justify-center">
+        <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center origin-center">
           
           {/* ─── Left: Copy & Links ─── */}
           <div className="flex flex-col justify-center">
@@ -80,44 +80,34 @@ export default function HirePage() {
               Need a backend built, a mobile app shipped, or an ML pipeline integrated? I'm open for freelance and contract work. Reach out below or send a message through the form.
             </p>
 
-            {/* Direct Connect - Chat Style */}
-            <div className="hire-stagger mt-12 w-full max-w-sm bg-[#e8f5e9]/70 backdrop-blur-xl p-6 rounded-3xl border border-white/10 shadow-2xl">
-              <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+            {/* Direct Connect */}
+            <div className="hire-stagger mt-8 w-full max-w-sm bg-white p-6 rounded-3xl border border-[#111]/10 shadow-lg">
+              <div className="flex items-center justify-between border-b border-[#111]/10 pb-4 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="relative w-10 h-10 rounded-full border border-white/10 overflow-hidden shrink-0" style={{ boxShadow: "0 0 15px rgba(99,102,241,0.2)" }}>
+                  <div className="relative w-10 h-10 rounded-full border border-[#111]/10 overflow-hidden shrink-0">
                     <Image src="/profile.jpg" alt="Profile" width={40} height={40} className="object-cover w-full h-full" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-[#111]/90 leading-none">Biswadeep Tewari</p>
+                    <p className="text-sm font-bold text-[#111] leading-none">Biswadeep Tewari</p>
                     <p className="text-[10px] text-[#C9A96E] font-mono mt-1 flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 bg-[#C9A96E] rounded-full animate-pulse shadow-[0_0_8px_rgba(201,169,110,0.8)]" />Online
+                      <span className="w-1.5 h-1.5 bg-[#C9A96E] rounded-full animate-pulse" />Available for Work
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Chat message */}
-              <div className="space-y-4 mb-6">
-                <div className="flex gap-3">
-                  <div className="w-6 h-6 rounded-full bg-[#C9A96E]/20 border border-[#C9A96E]/30 shrink-0 flex items-center justify-center text-[10px] text-[#C9A96E]">N</div>
-                  <div className="bg-white/10 backdrop-blur-md rounded-2xl rounded-tl-sm p-3.5 text-sm text-[#111]/90 max-w-[90%] border border-white/5 shadow-lg leading-relaxed font-medium">
-                    Hey! I'm available for freelance projects. What are you working on?
-                  </div>
-                </div>
-              </div>
-
               {/* Action Buttons */}
-              <div className="flex flex-col gap-2.5 pl-9">
+              <div className="flex flex-col gap-2">
                 <a href="https://wa.me/916297446078" target="_blank" rel="noreferrer"
-                  className="bg-white/[0.02] hover:bg-[#C9A96E]/15 backdrop-blur-md border border-white/10 hover:border-[#C9A96E] text-[#111]/60 hover:text-[#C9A96E] font-mono uppercase tracking-[0.15em] text-[10px] px-6 py-3 rounded-full transition-all w-fit self-end flex items-center gap-2">
+                  className="bg-[#f9fafb] hover:bg-[#C9A96E]/10 border border-[#111]/10 hover:border-[#C9A96E] text-[#111]/70 hover:text-[#C9A96E] font-mono uppercase tracking-[0.1em] text-[10px] px-6 py-3 rounded-full transition-all w-full flex justify-center items-center gap-2">
                   Start on WhatsApp
                 </a>
                 <a href="mailto:mericans24@gmail.com"
-                  className="bg-white/[0.02] hover:bg-[#C9A96E]/15 backdrop-blur-md border border-white/10 hover:border-[#C9A96E] text-[#111]/60 hover:text-[#C9A96E] font-mono uppercase tracking-[0.15em] text-[10px] px-6 py-3 rounded-full transition-all w-fit self-end flex items-center gap-2">
+                  className="bg-[#f9fafb] hover:bg-[#C9A96E]/10 border border-[#111]/10 hover:border-[#C9A96E] text-[#111]/70 hover:text-[#C9A96E] font-mono uppercase tracking-[0.1em] text-[10px] px-6 py-3 rounded-full transition-all w-full flex justify-center items-center gap-2">
                   Write an email
                 </a>
                 <a href="https://www.linkedin.com/in/raj-tewari-9a93212a3/" target="_blank" rel="noreferrer"
-                  className="bg-white/[0.02] hover:bg-[#C9A96E]/15 backdrop-blur-md border border-white/10 hover:border-[#C9A96E] text-[#111]/60 hover:text-[#C9A96E] font-mono uppercase tracking-[0.15em] text-[10px] px-6 py-3 rounded-full transition-all w-fit self-end flex items-center gap-2">
+                  className="bg-[#f9fafb] hover:bg-[#C9A96E]/10 border border-[#111]/10 hover:border-[#C9A96E] text-[#111]/70 hover:text-[#C9A96E] font-mono uppercase tracking-[0.1em] text-[10px] px-6 py-3 rounded-full transition-all w-full flex justify-center items-center gap-2">
                   Connect on LinkedIn
                 </a>
               </div>
@@ -129,28 +119,27 @@ export default function HirePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="relative mt-12 lg:mt-0"
+            className="relative mt-8 lg:mt-0"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-[#C9A96E]/5 via-black/10 to-transparent rounded-3xl blur-2xl" />
-            <form onSubmit={handleSubmit} className="relative p-6 sm:p-8 rounded-3xl flex flex-col gap-6 w-full border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] bg-[#e8f5e9]/70 backdrop-blur-xl">
+            <form onSubmit={handleSubmit} className="relative p-6 sm:p-8 rounded-3xl flex flex-col gap-5 w-full border border-[#111]/10 shadow-lg bg-white">
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/40 ml-1">Name</label>
+                  <label htmlFor="name" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/50 ml-1">Name</label>
                   <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="Your Name"
-                    className="bg-white/[0.03] border border-white/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white/[0.05] outline-none transition-all" />
+                    className="bg-[#f9fafb] border border-[#111]/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white outline-none transition-all" />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/40 ml-1">Email Address</label>
+                  <label htmlFor="email" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/50 ml-1">Email Address</label>
                   <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required placeholder="hello@yourcompany.com"
-                    className="bg-white/[0.03] border border-white/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white/[0.05] outline-none transition-all" />
+                    className="bg-[#f9fafb] border border-[#111]/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white outline-none transition-all" />
                 </div>
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="budget" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/40 ml-1">Budget (Optional)</label>
+                <label htmlFor="budget" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/50 ml-1">Budget (Optional)</label>
                 <input type="text" id="budget" name="budget" value={formData.budget} onChange={handleChange} list="budget-options" placeholder="Select or type your budget"
-                  className="bg-white/[0.03] border border-white/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white/[0.05] outline-none transition-all" />
+                  className="bg-[#f9fafb] border border-[#111]/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white outline-none transition-all" />
                 <datalist id="budget-options">
                   <option value="Less than $1,000" />
                   <option value="$1,000 - $5,000" />
@@ -160,9 +149,9 @@ export default function HirePage() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label htmlFor="message" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/40 ml-1">Message</label>
-                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Describe your project requirements..." rows={5}
-                  className="bg-white/[0.03] border border-white/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white/[0.05] outline-none transition-all resize-none" />
+                <label htmlFor="message" className="font-mono text-[10px] tracking-widest uppercase text-[#111]/50 ml-1">Message</label>
+                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required placeholder="Describe your project requirements..." rows={4}
+                  className="bg-[#f9fafb] border border-[#111]/10 rounded-lg p-3 text-[#111] text-sm focus:border-[#C9A96E]/50 focus:bg-white outline-none transition-all resize-none" />
               </div>
 
               {status === "error" && (
