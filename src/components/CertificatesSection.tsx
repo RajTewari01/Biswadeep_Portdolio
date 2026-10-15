@@ -214,7 +214,7 @@ export default function CertificatesSection() {
 
   return (
     <section id="credentials" ref={sectionRef} style={{
-      background: "#e8f5e9", position: "relative",
+      background: "linear-gradient(180deg, #781939 0%, #3D0C1D 45%, #090909 100%)", position: "relative",
       padding: "120px 0", overflow: "hidden",
     }}>
       {/* Ambient glow */}
@@ -231,7 +231,7 @@ export default function CertificatesSection() {
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
             fontFamily: "monospace", fontSize: 9, letterSpacing: "0.28em",
-            color: "#888", marginBottom: 16,
+            color: "rgba(255, 255, 255, 0.7)", marginBottom: 16,
           }}>
             <span style={{ color: "#C9A96E", fontWeight: 700 }}>04</span>
             <span style={{ width: 28, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
@@ -244,13 +244,13 @@ export default function CertificatesSection() {
             fontWeight: 700,
             lineHeight: 0.95, letterSpacing: "-0.02em",
           }}>
-            <div style={{ color: "#111111" }}>Certified</div>
+            <div style={{ color: "#ffffff" }}>Certified</div>
             <div style={{ color: "#C9A96E", fontStyle: "italic" }}>Excellence.</div>
           </h2>
 
           <p style={{
             marginTop: 16, fontFamily: "monospace", fontSize: 12,
-            color: "#444", maxWidth: 400, lineHeight: 1.8,
+            color: "rgba(255, 255, 255, 0.85)", maxWidth: 400, lineHeight: 1.8,
           }}>
             {certificates.length} certifications from Anthropic, Google, and others.
           </p>
@@ -445,7 +445,7 @@ export default function CertificatesSection() {
       {/* Bottom divider */}
       <div style={{
         position: "absolute", bottom: -1, left: 0, right: 0, height: 72,
-        background: "#e8f5e9",
+        background: "#090909",
         clipPath: "polygon(0 72px, 100% 0, 100% 100%, 0 100%)",
         zIndex: 10,
       }} />

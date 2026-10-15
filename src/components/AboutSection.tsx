@@ -95,7 +95,7 @@ export default function AboutSection() {
         {/* Base (seen before reveal) */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "#781939",
+          background: "#090909",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           {/* Pulsing rings */}
@@ -200,13 +200,13 @@ export default function AboutSection() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 10,
         }}>
-          <path d="M0,60 C480,0 960,90 1440,30 L1440,90 L0,90 Z" fill="#e8f5e9" />
+          <path d="M0,60 C480,0 960,90 1440,30 L1440,90 L0,90 Z" fill="#781939" />
         </svg>
       </div>
 
       {/* ═══ SKILLS & STATS SECTION ═══ */}
       <div style={{
-        background: "#e8f5e9", position: "relative",
+        background: "linear-gradient(180deg, #781939 0%, #3D0C1D 45%, #090909 100%)", position: "relative",
         padding: "80px 0 160px", overflow: "hidden",
       }}>
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
@@ -214,7 +214,7 @@ export default function AboutSection() {
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
             fontFamily: "monospace", fontSize: "clamp(12px, 1.5vw, 15px)", letterSpacing: "0.28em",
-            color: "rgba(0,0,0,0.35)", marginBottom: 40,
+            color: "rgba(255, 255, 255, 0.7)", marginBottom: 40,
           }}>
             <span style={{ color: "#C9A96E", fontWeight: 700 }}>03</span>
             <span style={{ width: 40, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />

@@ -61,7 +61,7 @@ export default function SkillsMarquee() {
         position: "absolute", top: -1, left: 0, right: 0,
         width: "100%", height: 90, zIndex: 10,
       }}>
-        <path d="M0,0 L1440,0 L1440,60 C1080,90 360,0 0,30 Z" fill="#e8f5e9" />
+        <path d="M0,0 L1440,0 L1440,60 C1080,90 360,0 0,30 Z" fill="#090909" />
       </svg>
 
       {/* Grain */}
@@ -145,7 +145,7 @@ export default function SkillsMarquee() {
         position: "absolute", bottom: -1, left: 0, right: 0,
         width: "100%", height: 120, zIndex: 10,
       }}>
-        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#e8f5e9" />
+        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#781939" />
       </svg>
     </section>
   );

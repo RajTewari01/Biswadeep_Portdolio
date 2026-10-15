@@ -79,7 +79,7 @@ export default function ContactSection() {
     <section id="contact" ref={sectionRef} style={{
       position: "relative",
       minHeight: "100vh",
-      background: "#e8f5e9",
+      background: "linear-gradient(180deg, #781939 0%, #3D0C1D 45%, #090909 100%)",
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       padding: "120px 24px",
@@ -90,7 +90,7 @@ export default function ContactSection() {
         position: "absolute",
         width: "80%", height: "60%",
         borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 60%)",
+        background: "radial-gradient(ellipse, rgba(201,169,110,0.06) 0%, transparent 60%)",
         top: "20%", left: "10%",
       }} />
 
@@ -100,7 +100,7 @@ export default function ContactSection() {
         style={{
           fontFamily: "var(--font-playfair), 'Playfair Display', serif",
           fontSize: "clamp(48px, 14vw, 160px)",
-          fontWeight: 900, color: "#111",
+          fontWeight: 900, color: "#ffffff",
           lineHeight: 0.85, letterSpacing: "-0.06em",
           textAlign: "center", marginBottom: 48,
           transformOrigin: "50% 50%",
@@ -113,7 +113,7 @@ export default function ContactSection() {
       {/* Subtext */}
       <p style={{
         fontFamily: "monospace", fontSize: 12,
-        color: "#444", maxWidth: 400,
+        color: "rgba(255, 255, 255, 0.85)", maxWidth: 400,
         textAlign: "center", lineHeight: 1.8, marginBottom: 40,
       }}>
         Got a project in mind, need a backend built, or looking for someone

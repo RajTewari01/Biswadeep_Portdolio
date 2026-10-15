@@ -244,7 +244,7 @@ export default function ParallaxHero() {
             </h1>
             <style>{`
               .tewari-magenta-char {
-                background: linear-gradient(135deg, #B81D5B 0%, #781939 50%, #3D0C1D 100%);
+                background: linear-gradient(135deg, #781939 0%, #3D0C1D 45%, #090909 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
               }
@@ -443,7 +443,7 @@ export default function ParallaxHero() {
       {/* ── S2: SLIDES OVER HERO ── */}
       <div style={{
         position: "relative", height: "100vh",
-        background: "#781939", zIndex: 2, overflow: "hidden",
+        background: "linear-gradient(180deg, #781939 0%, #3D0C1D 45%, #090909 100%)", zIndex: 2, overflow: "hidden",
       }}>
         {/* Diagonal top */}
         <div style={{
@@ -552,7 +552,7 @@ export default function ParallaxHero() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 4,
         }}>
-          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#781939" />
+          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#090909" />
         </svg>
       </div>
 
