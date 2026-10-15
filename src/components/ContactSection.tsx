@@ -79,7 +79,7 @@ export default function ContactSection() {
     <section id="contact" ref={sectionRef} style={{
       position: "relative",
       minHeight: "100vh",
-      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
+      background: "#e8f5e9",
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       padding: "120px 24px",
@@ -90,8 +90,8 @@ export default function ContactSection() {
         position: "absolute",
         width: "80%", height: "60%",
         borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(201,169,110,0.06) 0%, transparent 60%)",
-        top: "20%", left: "10%", pointerEvents: "none",
+        background: "radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 60%)",
+        top: "20%", left: "10%",
       }} />
 
       {/* Big heading */}
@@ -100,7 +100,7 @@ export default function ContactSection() {
         style={{
           fontFamily: "var(--font-playfair), 'Playfair Display', serif",
           fontSize: "clamp(48px, 14vw, 160px)",
-          fontWeight: 900, color: "#ffffff",
+          fontWeight: 900, color: "#111",
           lineHeight: 0.85, letterSpacing: "-0.06em",
           textAlign: "center", marginBottom: 48,
           transformOrigin: "50% 50%",
@@ -113,7 +113,7 @@ export default function ContactSection() {
       {/* Subtext */}
       <p style={{
         fontFamily: "monospace", fontSize: 12,
-        color: "rgba(255, 255, 255, 0.85)", maxWidth: 400,
+        color: "#444", maxWidth: 400,
         textAlign: "center", lineHeight: 1.8, marginBottom: 40,
       }}>
         Got a project in mind, need a backend built, or looking for someone
@@ -134,26 +134,24 @@ export default function ContactSection() {
             className="link-pill"
             style={{
               padding: "12px 32px", borderRadius: 32,
-              border: "1px solid rgba(255,255,255,0.15)",
-              background: "#ffffff",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
-              color: "#090909", fontFamily: "monospace",
+              border: "1px solid rgba(0,0,0,0.05)",
+              background: "#fff",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+              color: "#444", fontFamily: "monospace",
               fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase",
               fontWeight: 700, textDecoration: "none",
               transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
               display: "flex", alignItems: "center", gap: 10,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#C9A96E";
+              e.currentTarget.style.background = "rgba(201,169,110,0.1)";
               e.currentTarget.style.borderColor = "#C9A96E";
-              e.currentTarget.style.color = "#090909";
-              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.color = "#C9A96E";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "#ffffff";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
-              e.currentTarget.style.color = "#090909";
-              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.style.borderColor = "rgba(0,0,0,0.05)";
+              e.currentTarget.style.color = "#444";
             }}
           >
             {link.label}
@@ -179,7 +177,7 @@ export default function ContactSection() {
           marginTop: 48, padding: "16px 40px",
           borderRadius: 40, cursor: "pointer",
           border: "1px solid #C9A96E",
-          background: "rgba(201,169,110,0.2)",
+          background: "rgba(201,169,110,0.15)",
           color: "#C9A96E", fontFamily: "var(--font-syne), sans-serif",
           fontSize: 14, fontWeight: 800, letterSpacing: "0.2em",
           textTransform: "uppercase", textDecoration: "none",
@@ -187,11 +185,11 @@ export default function ContactSection() {
           position: "relative", overflow: "hidden",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = "rgba(201,169,110,0.35)";
-          e.currentTarget.style.boxShadow = "0 0 30px rgba(201,169,110,0.25)";
+          e.currentTarget.style.background = "rgba(201,169,110,0.25)";
+          e.currentTarget.style.boxShadow = "0 0 30px rgba(201,169,110,0.15)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = "rgba(201,169,110,0.2)";
+          e.currentTarget.style.background = "rgba(201,169,110,0.15)";
           e.currentTarget.style.boxShadow = "none";
         }}
       >
@@ -201,12 +199,12 @@ export default function ContactSection() {
       {/* Footer line */}
       <footer style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        borderTop: "1px solid rgba(255,255,255,0.08)",
+        borderTop: "1px solid rgba(0,0,0,0.04)",
         padding: "20px 0",
       }}>
         <div className="section-pad-x" style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          fontFamily: "monospace", fontSize: 9, color: "rgba(255,255,255,0.5)",
+          fontFamily: "monospace", fontSize: 9, color: "rgba(0,0,0,0.4)",
           letterSpacing: "0.15em",
         }}>
           <span>© 2026 BISWADEEP TEWARI</span>

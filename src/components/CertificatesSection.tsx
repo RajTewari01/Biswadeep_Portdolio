@@ -214,17 +214,15 @@ export default function CertificatesSection() {
 
   return (
     <section id="credentials" ref={sectionRef} style={{
-      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
-      position: "relative",
-      padding: "120px 0",
-      overflow: "hidden",
+      background: "#e8f5e9", position: "relative",
+      padding: "120px 0", overflow: "hidden",
     }}>
       {/* Ambient glow */}
       <div style={{
         position: "absolute", width: "60%", height: "40%",
         borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(201,169,110,0.06) 0%, transparent 70%)",
-        top: "20%", left: "20%", pointerEvents: "none",
+        background: "radial-gradient(ellipse, rgba(201,169,110,0.04) 0%, transparent 70%)",
+        top: "20%", left: "20%",
       }} />
 
       <div className="section-pad-x" style={{ position: "relative", zIndex: 2 }}>
@@ -233,7 +231,7 @@ export default function CertificatesSection() {
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
             fontFamily: "monospace", fontSize: 9, letterSpacing: "0.28em",
-            color: "rgba(255, 255, 255, 0.7)", marginBottom: 16,
+            color: "#888", marginBottom: 16,
           }}>
             <span style={{ color: "#C9A96E", fontWeight: 700 }}>04</span>
             <span style={{ width: 28, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
@@ -246,13 +244,13 @@ export default function CertificatesSection() {
             fontWeight: 700,
             lineHeight: 0.95, letterSpacing: "-0.02em",
           }}>
-            <div style={{ color: "#ffffff" }}>Certified</div>
+            <div style={{ color: "#111111" }}>Certified</div>
             <div style={{ color: "#C9A96E", fontStyle: "italic" }}>Excellence.</div>
           </h2>
 
           <p style={{
             marginTop: 16, fontFamily: "monospace", fontSize: 12,
-            color: "rgba(255, 255, 255, 0.85)", maxWidth: 400, lineHeight: 1.8,
+            color: "#444", maxWidth: 400, lineHeight: 1.8,
           }}>
             {certificates.length} certifications from Anthropic, Google, and others.
           </p>
@@ -262,31 +260,26 @@ export default function CertificatesSection() {
         <div style={{
           display: "flex", gap: 8, marginBottom: 40, flexWrap: "wrap",
         }}>
-          {DYNAMIC_CATEGORIES.map((cat) => {
-            const isActive = activeFilter === cat.key;
-            return (
-              <button
-                key={cat.key}
-                onClick={() => setActiveFilter(cat.key)}
-                style={{
-                  padding: "8px 20px", borderRadius: 20,
-                  border: isActive ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.15)",
-                  background: isActive ? "#ffffff" : "rgba(255,255,255,0.08)",
-                  color: isActive ? "#090909" : "rgba(255,255,255,0.75)",
-                  fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
-                  fontWeight: isActive ? 700 : 500,
-                  textTransform: "uppercase", cursor: "pointer",
-                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-                  boxShadow: isActive ? "0 4px 15px rgba(255,255,255,0.2)" : "none",
-                }}
-              >
-                {cat.label} ({cat.key === "all" ? certificates.length : cat.key === "other" ? certificates.filter(c => !top4Issuers.includes(c.issuer)).length : certificates.filter(c => c.issuer === cat.key).length})
-              </button>
-            );
-          })}
+          {DYNAMIC_CATEGORIES.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveFilter(cat.key)}
+              style={{
+                padding: "8px 20px", borderRadius: 20,
+                border: `1px solid ${activeFilter === cat.key ? "#C9A96E" : "rgba(0,0,0,0.1)"}`,
+                background: activeFilter === cat.key ? "rgba(201,169,110,0.15)" : "rgba(255,255,255,0.8)",
+                color: activeFilter === cat.key ? "#C9A96E" : "#666",
+                fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
+                textTransform: "uppercase", cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+            >
+              {cat.label} ({cat.key === "all" ? certificates.length : cat.key === "other" ? certificates.filter(c => !top4Issuers.includes(c.issuer)).length : certificates.filter(c => c.issuer === cat.key).length})
+            </button>
+          ))}
         </div>
 
-        {/* Certificate Grid — Solid White Cards, NO glassmorphism */}
+        {/* Certificate Grid */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
@@ -298,21 +291,25 @@ export default function CertificatesSection() {
               className="cert-card"
               onClick={() => cert.credential_url && window.open(cert.credential_url, "_blank")}
               style={{
-                background: "#ffffff",
-                border: "1px solid rgba(255,255,255,0.15)",
+                background: "rgba(255,255,255,0.6)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(0,0,0,0.05)",
                 borderRadius: 12, padding: 24,
                 cursor: cert.credential_url ? "pointer" : "default",
                 transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                 position: "relative", overflow: "hidden",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
               }}
               onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,1)";
+                e.currentTarget.style.borderColor = "rgba(201,169,110,0.4)";
                 e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 20px 45px rgba(0,0,0,0.35)";
+                e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.05)";
               }}
               onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.6)";
+                e.currentTarget.style.borderColor = "rgba(0,0,0,0.05)";
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.2)";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               {/* Issuer badge */}
@@ -331,7 +328,7 @@ export default function CertificatesSection() {
                 {cert.date_earned && (
                   <span style={{
                     fontFamily: "monospace", fontSize: 9,
-                    color: "#666", letterSpacing: "0.1em",
+                    color: "#888", letterSpacing: "0.1em",
                   }}>{cert.date_earned}</span>
                 )}
               </div>
@@ -385,13 +382,13 @@ export default function CertificatesSection() {
               <h3 style={{
                 fontFamily: "var(--font-syne), sans-serif",
                 fontSize: 16, fontWeight: 700,
-                color: "#090909",
+                color: "#111",
                 marginBottom: 8, lineHeight: 1.3,
               }}>{cert.title}</h3>
 
               {cert.description && (
                 <p style={{
-                  fontSize: 12, color: "#333333",
+                  fontSize: 12, color: "#444",
                   lineHeight: 1.6, fontWeight: 400,
                 }}>{cert.description}</p>
               )}
@@ -399,13 +396,12 @@ export default function CertificatesSection() {
               {cert.credential_url && (
                 <div style={{
                   marginTop: 16, fontFamily: "monospace",
-                  fontSize: 9, color: "#781939",
-                  fontWeight: 700,
+                  fontSize: 9, color: "#C9A96E",
                   letterSpacing: "0.15em", textTransform: "uppercase",
                   display: "flex", alignItems: "center", gap: 6,
                 }}>
                   <span>View Credential</span>
-                  <span style={{ fontSize: 12, color: "#C9A96E" }}>→</span>
+                  <span style={{ fontSize: 12 }}>→</span>
                 </div>
               )}
             </div>
@@ -419,8 +415,8 @@ export default function CertificatesSection() {
               onClick={() => setShowAll(true)}
               style={{
                 background: "transparent",
-                color: "#ffffff",
-                border: "1px solid rgba(255, 255, 255, 0.3)",
+                color: "#C9A96E",
+                border: "1px solid rgba(201,169,110,0.3)",
                 padding: "16px 40px",
                 borderRadius: 40,
                 fontFamily: "monospace",
@@ -432,12 +428,12 @@ export default function CertificatesSection() {
                 transition: "all 0.3s",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255, 255, 255, 0.15)";
-                e.currentTarget.style.borderColor = "#ffffff";
+                e.currentTarget.style.background = "rgba(201,169,110,0.1)";
+                e.currentTarget.style.borderColor = "#C9A96E";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+                e.currentTarget.style.borderColor = "rgba(201,169,110,0.3)";
               }}
             >
               VIEW ALL
@@ -445,6 +441,14 @@ export default function CertificatesSection() {
           </div>
         )}
       </div>
+
+      {/* Bottom divider */}
+      <div style={{
+        position: "absolute", bottom: -1, left: 0, right: 0, height: 72,
+        background: "#e8f5e9",
+        clipPath: "polygon(0 72px, 100% 0, 100% 100%, 0 100%)",
+        zIndex: 10,
+      }} />
     </section>
   );
 }
