@@ -14,7 +14,7 @@ const LINKS = [
   { label: "Google Skills", href: "https://www.skills.google/public_profiles/2d5e1957-0650-40f5-8b71-e8b7eabed363", color: "#34A853" },
   { label: "Google Dev", href: "https://g.dev/BiswadeepTewari", color: "#4285F4" },
   { label: "Email", href: "mailto:mericans24@gmail.com", color: "#22d3ee" },
-  { 
+  {
     label: (
       <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -27,9 +27,9 @@ const LINKS = [
         </svg>
         LinkTree
       </span>
-    ), 
-    href: "https://link-tree-by-raj.vercel.app", 
-    color: "#43E660" 
+    ),
+    href: "https://link-tree-by-raj.vercel.app",
+    color: "#43E660"
   },
 ];
 
@@ -79,7 +79,7 @@ export default function ContactSection() {
     <section id="contact" ref={sectionRef} style={{
       position: "relative",
       minHeight: "100vh",
-      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
+      background: "#e8f5e9",
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       padding: "120px 24px",
@@ -90,7 +90,7 @@ export default function ContactSection() {
         position: "absolute",
         width: "80%", height: "60%",
         borderRadius: "50%",
-        background: "radial-gradient(ellipse, rgba(201,169,110,0.06) 0%, transparent 60%)",
+        background: "radial-gradient(ellipse, rgba(99,102,241,0.04) 0%, transparent 60%)",
         top: "20%", left: "10%",
       }} />
 
@@ -100,7 +100,7 @@ export default function ContactSection() {
         style={{
           fontFamily: "var(--font-playfair), 'Playfair Display', serif",
           fontSize: "clamp(48px, 14vw, 160px)",
-          fontWeight: 900, color: "#ffffff",
+          fontWeight: 900, color: "#111",
           lineHeight: 0.85, letterSpacing: "-0.06em",
           textAlign: "center", marginBottom: 48,
           transformOrigin: "50% 50%",
@@ -113,7 +113,7 @@ export default function ContactSection() {
       {/* Subtext */}
       <p style={{
         fontFamily: "monospace", fontSize: 12,
-        color: "rgba(255, 255, 255, 0.85)", maxWidth: 400,
+        color: "#444", maxWidth: 400,
         textAlign: "center", lineHeight: 1.8, marginBottom: 40,
       }}>
         Got a project in mind, need a backend built, or looking for someone
@@ -199,12 +199,12 @@ export default function ContactSection() {
       {/* Footer line */}
       <footer style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+        borderTop: "1px solid rgba(0,0,0,0.04)",
         padding: "20px 0",
       }}>
         <div className="section-pad-x" style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          fontFamily: "monospace", fontSize: 9, color: "rgba(255, 255, 255, 0.5)",
+          fontFamily: "monospace", fontSize: 9, color: "rgba(0,0,0,0.4)",
           letterSpacing: "0.15em",
         }}>
           <span>© 2026 BISWADEEP TEWARI</span>

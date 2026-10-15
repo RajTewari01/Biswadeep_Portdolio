@@ -14,8 +14,8 @@ export default function LegacyGameWorld() {
   if (!isGameMode || !mounted) return null;
 
   return (
-    <div 
-      className="fixed inset-0 z-[100] bg-[#090909] animate-in fade-in duration-700"
+    <div
+      className="fixed inset-0 z-[100] bg-[#e8f5e9] animate-in fade-in duration-700"
       style={{ isolation: "isolate" }}
     >
       {/* 
@@ -23,8 +23,8 @@ export default function LegacyGameWorld() {
         This prevents his global CSS, Canvas manipulations, and Cannon.js loops 
         from colliding with Next.js, React Three Fiber, or Framer Motion.
       */}
-      <iframe 
-        src="/bruno-game/index.html" 
+      <iframe
+        src="/bruno-game/index.html"
         style={{
           width: "100%",
           height: "100%",
@@ -35,9 +35,9 @@ export default function LegacyGameWorld() {
         title="Bruno Simon Game Engine"
         allow="autoplay; fullscreen; xr-spatial-tracking"
       />
-      
+
       {/* Exit Button overlay */}
-      <button 
+      <button
         onClick={exitGameMode}
         className="absolute top-6 right-8 z-[110] flex items-center gap-2 px-5 py-2.5 bg-white hover:bg-gray-100 text-red-600 font-mono text-[13px] tracking-widest rounded-full shadow-[0_0_20px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:scale-105 active:scale-95 border-none cursor-pointer"
       >

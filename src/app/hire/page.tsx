@@ -56,12 +56,12 @@ export default function HirePage() {
   return (
     <>
       <ThreeCanvas />
-      <div className="fixed inset-0 z-[1] bg-gradient-to-b from-[#781939]/10 via-transparent to-[#090909]/40 pointer-events-none" />
+      <div className="fixed inset-0 z-[1] bg-[#e8f5e9]/40 pointer-events-none" />
       <Navbar />
 
       <main ref={containerRef} className="relative z-10 min-h-[100vh] pt-20 pb-4 px-4 md:px-8 flex flex-col items-center justify-center overflow-hidden">
         <div className="w-full max-w-[1100px] grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center origin-center mt-8">
-          
+
           {/* ─── Left: Copy & Links ─── */}
           <div className="flex flex-col justify-center">
             <div className="flex items-center gap-3 mb-6 hire-stagger">
@@ -70,9 +70,9 @@ export default function HirePage() {
             </div>
 
             <h1 className="hire-stagger font-playfair text-[clamp(32px,5vw,60px)] font-black uppercase tracking-tighter leading-[0.95] text-[#111]">
-              Let&apos;s <br/>
-              Build <br/>
-              <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400, textTransform: "none" }}>Something</em><br/>
+              Let&apos;s <br />
+              Build <br />
+              <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400, textTransform: "none" }}>Something</em><br />
               Incredible.
             </h1>
 

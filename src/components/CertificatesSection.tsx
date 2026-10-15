@@ -7,7 +7,7 @@ import { supabase, Certificate } from "@/lib/supabase";
 
 gsap.registerPlugin(ScrollTrigger);
 
-  // Removed hardcoded CATEGORIES. We will compute them dynamically.
+// Removed hardcoded CATEGORIES. We will compute them dynamically.
 
 // Fallback certificates if Supabase is not configured
 const fallbackCertificates: Certificate[] = [
@@ -198,8 +198,8 @@ export default function CertificatesSection() {
     activeFilter === "all"
       ? certificates
       : activeFilter === "other"
-      ? certificates.filter((c) => !top4Issuers.includes(c.issuer))
-      : certificates.filter((c) => c.issuer === activeFilter);
+        ? certificates.filter((c) => !top4Issuers.includes(c.issuer))
+        : certificates.filter((c) => c.issuer === activeFilter);
 
   const getIssuerColor = (issuer: string) => {
     if (issuer.toLowerCase().includes("anthropic")) return "#D4A574";
@@ -214,7 +214,7 @@ export default function CertificatesSection() {
 
   return (
     <section id="credentials" ref={sectionRef} style={{
-      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", position: "relative",
+      background: "#e8f5e9", position: "relative",
       padding: "120px 0", overflow: "hidden",
     }}>
       {/* Ambient glow */}
@@ -231,7 +231,7 @@ export default function CertificatesSection() {
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
             fontFamily: "monospace", fontSize: 9, letterSpacing: "0.28em",
-            color: "rgba(255, 255, 255, 0.7)", marginBottom: 16,
+            color: "#888", marginBottom: 16,
           }}>
             <span style={{ color: "#C9A96E", fontWeight: 700 }}>04</span>
             <span style={{ width: 28, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
@@ -244,13 +244,13 @@ export default function CertificatesSection() {
             fontWeight: 700,
             lineHeight: 0.95, letterSpacing: "-0.02em",
           }}>
-            <div style={{ color: "#ffffff" }}>Certified</div>
+            <div style={{ color: "#111111" }}>Certified</div>
             <div style={{ color: "#C9A96E", fontStyle: "italic" }}>Excellence.</div>
           </h2>
 
           <p style={{
             marginTop: 16, fontFamily: "monospace", fontSize: 12,
-            color: "rgba(255, 255, 255, 0.85)", maxWidth: 400, lineHeight: 1.8,
+            color: "#444", maxWidth: 400, lineHeight: 1.8,
           }}>
             {certificates.length} certifications from Anthropic, Google, and others.
           </p>
@@ -260,40 +260,23 @@ export default function CertificatesSection() {
         <div style={{
           display: "flex", gap: 8, marginBottom: 40, flexWrap: "wrap",
         }}>
-          {DYNAMIC_CATEGORIES.map((cat) => {
-            const isSelected = activeFilter === cat.key;
-            return (
-              <button
-                key={cat.key}
-                onClick={() => setActiveFilter(cat.key)}
-                style={{
-                  padding: "8px 20px", borderRadius: 20,
-                  border: isSelected ? "1px solid #ffffff" : "1px solid rgba(255,255,255,0.18)",
-                  background: isSelected ? "#ffffff" : "rgba(255,255,255,0.08)",
-                  color: isSelected ? "#090909" : "rgba(255,255,255,0.8)",
-                  fontWeight: isSelected ? 700 : 500,
-                  fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
-                  textTransform: "uppercase", cursor: "pointer",
-                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
-                  boxShadow: isSelected ? "0 4px 20px rgba(0,0,0,0.3)" : "none",
-                }}
-                onMouseEnter={(e) => {
-                  if (!isSelected) {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.16)";
-                    e.currentTarget.style.color = "#ffffff";
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (!isSelected) {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                    e.currentTarget.style.color = "rgba(255,255,255,0.8)";
-                  }
-                }}
-              >
-                {cat.label} ({cat.key === "all" ? certificates.length : cat.key === "other" ? certificates.filter(c => !top4Issuers.includes(c.issuer)).length : certificates.filter(c => c.issuer === cat.key).length})
-              </button>
-            );
-          })}
+          {DYNAMIC_CATEGORIES.map((cat) => (
+            <button
+              key={cat.key}
+              onClick={() => setActiveFilter(cat.key)}
+              style={{
+                padding: "8px 20px", borderRadius: 20,
+                border: `1px solid ${activeFilter === cat.key ? "#C9A96E" : "rgba(0,0,0,0.1)"}`,
+                background: activeFilter === cat.key ? "rgba(201,169,110,0.15)" : "rgba(255,255,255,0.8)",
+                color: activeFilter === cat.key ? "#C9A96E" : "#666",
+                fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
+                textTransform: "uppercase", cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+            >
+              {cat.label} ({cat.key === "all" ? certificates.length : cat.key === "other" ? certificates.filter(c => !top4Issuers.includes(c.issuer)).length : certificates.filter(c => c.issuer === cat.key).length})
+            </button>
+          ))}
         </div>
 
         {/* Certificate Grid */}
@@ -308,21 +291,25 @@ export default function CertificatesSection() {
               className="cert-card"
               onClick={() => cert.credential_url && window.open(cert.credential_url, "_blank")}
               style={{
-                background: "#ffffff",
-                border: "1px solid rgba(255,255,255,0.15)",
+                background: "rgba(255,255,255,0.6)",
+                backdropFilter: "blur(16px)",
+                border: "1px solid rgba(0,0,0,0.05)",
                 borderRadius: 12, padding: 24,
                 cursor: cert.credential_url ? "pointer" : "default",
-                transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                 position: "relative", overflow: "hidden",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.18)",
               }}
               onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,1)";
+                e.currentTarget.style.borderColor = "rgba(201,169,110,0.4)";
                 e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 20px 45px rgba(0,0,0,0.3)";
+                e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.05)";
               }}
               onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.6)";
+                e.currentTarget.style.borderColor = "rgba(0,0,0,0.05)";
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.18)";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               {/* Issuer badge */}
@@ -356,8 +343,8 @@ export default function CertificatesSection() {
                   background: "#fff",
                   display: "flex", alignItems: "center", justifyContent: "center"
                 }}>
-                  <img 
-                    src={cert.image_url} 
+                  <img
+                    src={cert.image_url}
                     alt={cert.title}
                     style={{ width: "100%", height: "100%", objectFit: "cover" }}
                   />
@@ -372,9 +359,9 @@ export default function CertificatesSection() {
                   position: "relative",
                   background: "rgba(0,0,0,0.5)",
                 }}>
-                  <iframe 
-                    src={!origin.includes("localhost") ? `https://docs.google.com/viewer?url=${encodeURIComponent(origin + encodeURI(cert.credential_url))}&embedded=true` : `${encodeURI(cert.credential_url)}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`} 
-                    style={{ width: "200%", height: "200%", border: "none", pointerEvents: "none", transform: "scale(0.5)", transformOrigin: "0 0" }} 
+                  <iframe
+                    src={!origin.includes("localhost") ? `https://docs.google.com/viewer?url=${encodeURIComponent(origin + encodeURI(cert.credential_url))}&embedded=true` : `${encodeURI(cert.credential_url)}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    style={{ width: "200%", height: "200%", border: "none", pointerEvents: "none", transform: "scale(0.5)", transformOrigin: "0 0" }}
                     title={cert.title}
                   />
                   {/* Invisible overlay to catch clicks and trigger the window.open */}
@@ -454,6 +441,14 @@ export default function CertificatesSection() {
           </div>
         )}
       </div>
+
+      {/* Bottom divider */}
+      <div style={{
+        position: "absolute", bottom: -1, left: 0, right: 0, height: 72,
+        background: "#e8f5e9",
+        clipPath: "polygon(0 72px, 100% 0, 100% 100%, 0 100%)",
+        zIndex: 10,
+      }} />
     </section>
   );
 }

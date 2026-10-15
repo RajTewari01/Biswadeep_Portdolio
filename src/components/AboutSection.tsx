@@ -91,11 +91,11 @@ export default function AboutSection() {
   return (
     <section id="about" ref={sectionRef} style={{ position: "relative" }}>
       {/* ═══ EFFECT 2: SVG MASK REVEAL ═══ */}
-      <div ref={maskWrapRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
+      <div ref={maskWrapRef} style={{ position: "relative", height: "150vh", overflow: "hidden" }}>
         {/* Base (seen before reveal) */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "#090909",
+          background: "#e8f5e9",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           {/* Pulsing rings */}
@@ -129,7 +129,7 @@ export default function AboutSection() {
           {/* Background image */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
+            background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)",
           }} />
 
           {/* Grid */}
@@ -200,21 +200,21 @@ export default function AboutSection() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 10,
         }}>
-          <path d="M0,60 C480,0 960,90 1440,30 L1440,90 L0,90 Z" fill="#090909" />
+          <path d="M0,60 C480,0 960,90 1440,30 L1440,90 L0,90 Z" fill="#e8f5e9" />
         </svg>
       </div>
 
       {/* ═══ SKILLS & STATS SECTION ═══ */}
       <div style={{
-        background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", position: "relative",
+        background: "#e8f5e9", position: "relative",
         padding: "80px 0 160px", overflow: "hidden",
       }}>
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
-          
+
           <div style={{
             display: "flex", alignItems: "center", gap: 10,
             fontFamily: "monospace", fontSize: "clamp(12px, 1.5vw, 15px)", letterSpacing: "0.28em",
-            color: "rgba(255, 255, 255, 0.7)", marginBottom: 40,
+            color: "rgba(0,0,0,0.35)", marginBottom: 40,
           }}>
             <span style={{ color: "#C9A96E", fontWeight: 700 }}>03</span>
             <span style={{ width: 40, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
@@ -238,7 +238,7 @@ export default function AboutSection() {
                 <span style={{ fontSize: "clamp(48px, 8vw, 96px)", fontWeight: 900, color: "#C9A96E", fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}>+</span>
               </div>
             </div>
-            
+
             <div style={{
               background: "#ffffff", borderRadius: 24, padding: "clamp(32px, 5vw, 64px)",
               boxShadow: "0 10px 40px rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.02)",
@@ -276,7 +276,7 @@ export default function AboutSection() {
                 fontFamily: "monospace", fontSize: 12, color: "rgba(255,255,255,0.9)",
                 letterSpacing: "0.1em", textTransform: "uppercase",
               }}>
-                Makaut University<br/><span style={{ color: "rgba(255,255,255,0.5)" }}>West Bengal, India</span>
+                Makaut University<br /><span style={{ color: "rgba(255,255,255,0.5)" }}>West Bengal, India</span>
               </div>
             </div>
 
@@ -289,7 +289,7 @@ export default function AboutSection() {
                 {skills.map((s, i) => (
                   <div key={i} className="skill-row" style={{
                     display: "flex", flexDirection: "column", gap: 16,
-                    borderBottom: i === skills.length - 1 ? "none" : "1px solid rgba(0,0,0,0.04)", 
+                    borderBottom: i === skills.length - 1 ? "none" : "1px solid rgba(0,0,0,0.04)",
                     padding: i === 0 ? "0 0 24px 0" : i === skills.length - 1 ? "24px 0 0 0" : "24px 0",
                   }}>
                     <span style={{

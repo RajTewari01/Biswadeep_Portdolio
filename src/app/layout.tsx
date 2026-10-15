@@ -51,8 +51,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-[#090909]">
-      <body className={`${spaceGrotesk.variable} ${syne.variable} ${playfair.variable} ${pacifico.variable} antialiased bg-[#090909] text-white selection:bg-[#781939]/40 selection:text-white overflow-x-hidden`}>
+    <html lang="en" className="bg-[#e8f5e9]">
+      <body className={`${spaceGrotesk.variable} ${syne.variable} ${playfair.variable} ${pacifico.variable} antialiased bg-[#e8f5e9] text-[#111] selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden`}>
         <GameProvider>
           {children}
         </GameProvider>

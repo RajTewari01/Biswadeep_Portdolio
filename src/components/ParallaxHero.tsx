@@ -115,29 +115,31 @@ export default function ParallaxHero() {
 
   // ─── Perspective Sticky calculations ─────────────────────────────────
   const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
-  const scale = isMobile ? 1 : mapRange(scrollY, 0, vh, 1, 0.85);
-  const rotateZ = isMobile ? 0 : mapRange(scrollY, 0, vh, 0, 15);
-  const br = isMobile ? 0 : mapRange(scrollY, 0, vh, 0, 32);
-  const dim = isMobile ? 1 : mapRange(scrollY, 0, vh, 1, 0.5);
-  const opacity = isMobile ? 1 : mapRange(scrollY, vh * 0.5, vh * 1.2, 1, 0.2);
-  const blur = isMobile ? 0 : mapRange(scrollY, vh * 0.4, vh, 0, 4);
+  const scale = mapRange(scrollY, 0, vh, 1, 0.85);
+  const rotateZ = mapRange(scrollY, 0, vh, 0, 15); // Clockwise heavy rotation
+  const br = mapRange(scrollY, 0, vh, 0, 32);
+  const dim = mapRange(scrollY, 0, vh, 1, 0.5); // Keep it visible but darker
+  const opacity = mapRange(scrollY, vh * 0.5, vh * 1.2, 1, 0.2); // Slower fade so it peaks into next page
+  const blur = mapRange(scrollY, vh * 0.4, vh, 0, 4); // Subtle blur
 
   return (
-    <div ref={wrapRef} style={{ position: "relative", minHeight: "100vh" }} className="h-[100vh] md:h-[200vh]">
-      {/* ── S1: HERO ── */}
-      <div className="relative md:sticky top-0 h-[100vh] z-10 bg-transparent">
+    <div ref={wrapRef} style={{ position: "relative", height: "200vh" }}>
+      {/* ── S1: STICKY HERO — shrinks + rotates away ── */}
+      <div style={{
+        position: "sticky", top: 0, height: "100vh",
+        zIndex: 50, background: "transparent",
+      }}>
         <div
           ref={heroRef}
           style={{
             width: "100%", height: "100%",
             position: "relative",
             transformOrigin: "50% 50%",
-            transform: isMobile ? "none" : `scale(${scale}) rotate(${rotateZ}deg) translateY(${scrollY * 0.1}px)`,
-            filter: isMobile ? "none" : `brightness(${dim}) blur(${blur}px)`,
-            opacity: isMobile ? 1 : opacity,
-            borderRadius: isMobile ? 0 : br,
-            boxShadow: !isMobile && scrollY > 50 ? "0 40px 100px rgba(0,0,0,0.8)" : "none",
+            transform: `scale(${scale}) rotate(${rotateZ}deg) translateY(${scrollY * 0.1}px)`,
+            filter: `brightness(${dim}) blur(${blur}px)`,
+            opacity: opacity,
+            borderRadius: br,
+            boxShadow: scrollY > 50 ? "0 40px 100px rgba(0,0,0,0.8)" : "none",
           }}
         >
           {/* Desktop Only: Clean Soft Light Mesh Gradient (No image) */}
@@ -162,18 +164,18 @@ export default function ParallaxHero() {
               filter: "blur(120px)", borderRadius: "50%", opacity: 0.7,
             }} />
 
-            {/* Ambient center glow */}
+            {/* Glowing mint center */}
             <div style={{
               position: "absolute", width: "70vw", height: "70vw",
               top: "20%", left: "20%",
-              background: "#FCE7F3",
-              filter: "blur(140px)", borderRadius: "50%", opacity: 0.35,
+              background: "#D1FAE5",
+              filter: "blur(140px)", borderRadius: "50%", opacity: 0.5,
             }} />
           </div>
 
           {/* Mobile Only: Artwork Wallpaper */}
           <div className="block md:hidden absolute inset-0 z-0 overflow-hidden" style={{
-            backgroundColor: "#E5E5E5",
+            backgroundColor: "#EEDBC9",
           }}>
             <Image
               src="/hero_art.png"
@@ -219,7 +221,7 @@ export default function ParallaxHero() {
 
           {/* Hero content */}
           <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[120px] md:pt-[8vh]">
-            <div className="fade-in -translate-y-2 md:translate-y-0" style={{
+            <div className="fade-in" style={{
               display: "flex", alignItems: "center", gap: 14,
               marginBottom: 32,
               background: "#ffffff", padding: "6px 24px 6px 6px", borderRadius: 40,
@@ -234,44 +236,21 @@ export default function ParallaxHero() {
 
             <h1
               ref={textRef1}
-              className="font-playfair text-[clamp(48px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] -translate-y-1 md:translate-y-0 mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
+              className="font-playfair text-[clamp(48px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
             >
               {"BISWADEEP".split("").map((char, i) => (
                 <span key={`first-${i}`} className="char-first inline-block">{char}</span>
               ))}
             </h1>
-            <style>{`
-              @keyframes dynamicMagentaShift {
-                0% { background-position: 0% 50%; }
-                50% { background-position: 100% 50%; }
-                100% { background-position: 0% 50%; }
-              }
-              .tewari-magenta-char {
-                background: linear-gradient(135deg, #A0154E 0%, #781939 30%, #3D0C1D 65%, #090909 100%);
-                background-size: 250% 250%;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                animation: dynamicMagentaShift 6s ease infinite;
-              }
-              @media (min-width: 768px) {
-                .tewari-magenta-char {
-                  background: none !important;
-                  -webkit-background-clip: border-box !important;
-                  -webkit-text-fill-color: #C9A96E !important;
-                  color: #C9A96E !important;
-                  animation: none !important;
-                }
-              }
-            `}</style>
             <h1
               ref={textRef2}
-              className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] -translate-y-1 md:translate-y-0 mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
+              className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
             >
               {"TEWARI".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char-last inline-block opacity-0 tewari-magenta-char" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
+                <span key={`last-${i}`} className="char-last inline-block opacity-0" style={{ display: "none", color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
               ))}
-              <span className="char-last inline-block opacity-0 text-[#781939] md:text-[#0F172A]" style={{ display: "none" }}>.</span>
-              <span className="inline-block cursor-blink ml-1 font-light text-[#781939] md:text-[#0F172A]">|</span>
+              <span className="char-last inline-block opacity-0" style={{ color: "#0F172A" }}>.</span>
+              <span className="inline-block cursor-blink ml-1 font-light" style={{ color: "#0F172A" }}>|</span>
             </h1>
 
             <p
@@ -318,17 +297,17 @@ export default function ParallaxHero() {
                     background: "#FFFFFF",
                     color: "#111", fontSize: 15,
                     fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                    boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
+                    boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
                     transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                     display: "flex", alignItems: "center", gap: 10,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "scale(1.05)";
-                    e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
+                    e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
+                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                   }}
                 >
                   {item.icon}
@@ -353,18 +332,18 @@ export default function ParallaxHero() {
                   background: "#FFFFFF",
                   color: "#111", fontSize: 15,
                   fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                  boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
                   transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                   display: "flex", alignItems: "center", gap: 10,
                   cursor: "pointer"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
+                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -388,18 +367,18 @@ export default function ParallaxHero() {
                   background: "#FFFFFF",
                   color: "#111", fontSize: 15,
                   fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                  boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
                   transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                   display: "flex", alignItems: "center", gap: 10,
                   cursor: "pointer"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
+                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -414,17 +393,17 @@ export default function ParallaxHero() {
                   background: "#FFFFFF",
                   color: "#111", fontSize: 15,
                   fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                  boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
                   transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                   display: "flex", alignItems: "center", gap: 10,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
+                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
+                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -448,9 +427,16 @@ export default function ParallaxHero() {
 
       {/* ── S2: SLIDES OVER HERO ── */}
       <div style={{
-        position: "relative", minHeight: "100vh",
-        background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", zIndex: 2, overflow: "hidden",
+        position: "relative", height: "100vh",
+        background: "#e8f5e9", zIndex: 2, overflow: "hidden",
       }}>
+        {/* Diagonal top */}
+        <div style={{
+          position: "absolute", top: -1, left: 0, right: 0, height: 100,
+          background: "#e8f5e9",
+          clipPath: "polygon(0 100px, 100% 0, 100% 100%, 0 100%)",
+          zIndex: 5,
+        }} />
 
         <div className="flex flex-col md:flex-row" style={{
           height: "100%", alignItems: "center",
@@ -467,7 +453,7 @@ export default function ParallaxHero() {
             <div style={{
               display: "flex", alignItems: "center", gap: 10,
               fontFamily: "monospace", fontSize: "clamp(12px, 1.5vw, 15px)", letterSpacing: "0.28em",
-              color: "rgba(255, 255, 255, 0.7)", marginBottom: "clamp(12px, 2vw, 22px)",
+              color: "rgba(0,0,0,0.35)", marginBottom: "clamp(12px, 2vw, 22px)",
             }}>
               <span style={{ color: "#C9A96E", fontWeight: 700 }}>01</span>
               <span style={{ width: 40, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
@@ -477,7 +463,7 @@ export default function ParallaxHero() {
             <h2 style={{
               fontFamily: "var(--font-playfair), 'Playfair Display', serif",
               fontSize: "clamp(48px, 6vw, 110px)",
-              fontWeight: 700, color: "#ffffff",
+              fontWeight: 700, color: "#111",
               lineHeight: 1.05, letterSpacing: "-0.02em",
               marginBottom: "clamp(20px, 4vw, 40px)",
               wordBreak: "break-word",
@@ -488,7 +474,7 @@ export default function ParallaxHero() {
             </h2>
 
             <p style={{
-              fontFamily: "monospace", fontSize: "clamp(15px, 1.8vw, 22px)", color: "rgba(255, 255, 255, 0.9)",
+              fontFamily: "monospace", fontSize: "clamp(15px, 1.8vw, 22px)", color: "#444",
               lineHeight: 1.8, maxWidth: "100%", paddingRight: "4vw",
               borderLeft: "3px solid #C9A96E", paddingLeft: 24,
             }}>
@@ -500,7 +486,7 @@ export default function ParallaxHero() {
             {/* Location info */}
             <div style={{
               marginTop: "clamp(32px, 4vw, 48px)", fontFamily: "monospace",
-              fontSize: "clamp(11px, 1.2vw, 14px)", color: "rgba(255, 255, 255, 0.65)", letterSpacing: "0.15em",
+              fontSize: "clamp(11px, 1.2vw, 14px)", color: "#888", letterSpacing: "0.15em",
             }}>
               <span>Location: IND · Lat: 22.5726° N · Lon: 88.3639° E</span>
             </div>
@@ -551,7 +537,7 @@ export default function ParallaxHero() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 4,
         }}>
-          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#090909" />
+          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#e8f5e9" />
         </svg>
       </div>
 
