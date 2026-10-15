@@ -220,10 +220,9 @@ export default function ParallaxHero() {
           }} />
 
           {/* Hero content */}
-          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[120px] md:pt-[8vh]">
-            <div className="fade-in" style={{
+          <div className="absolute inset-0 flex flex-col items-start justify-start md:justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[76px] md:pt-[8vh]">
+            <div className="fade-in mb-3 md:mb-8" style={{
               display: "flex", alignItems: "center", gap: 14,
-              marginBottom: 32,
               background: "#ffffff", padding: "6px 24px 6px 6px", borderRadius: 40,
               boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
               border: "1px solid rgba(0,0,0,0.03)"
@@ -236,7 +235,7 @@ export default function ParallaxHero() {
 
             <h1
               ref={textRef1}
-              className="font-playfair text-[clamp(48px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
+              className="font-playfair text-[clamp(44px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
             >
               {"BISWADEEP".split("").map((char, i) => (
                 <span key={`first-${i}`} className="char-first inline-block">{char}</span>
@@ -244,31 +243,112 @@ export default function ParallaxHero() {
             </h1>
             <h1
               ref={textRef2}
-              className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
+              className="font-playfair text-[clamp(44px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-2 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
             >
               {"TEWARI".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char-last inline-block opacity-0" style={{ display: "none", color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
+                <span key={`last-${i}`} className="char-last inline-block opacity-0 text-[#2B1B14] md:text-[#C9A96E]" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
               ))}
-              <span className="char-last inline-block opacity-0" style={{ color: "#0F172A" }}>.</span>
-              <span className="inline-block cursor-blink ml-1 font-light" style={{ color: "#0F172A" }}>|</span>
+              <span className="char-last inline-block opacity-0 text-[#0F172A]" style={{ display: "none" }}>.</span>
+              <span className="inline-block cursor-blink ml-1 font-light text-[#0F172A]">|</span>
             </h1>
 
             <p
               ref={subtextRef}
-              className="fade-in fd3"
+              className="fade-in fd3 text-[13px] md:text-[clamp(16px,1.8vw,24px)] leading-snug md:leading-[1.6] max-w-[325px] md:max-w-[800px] mb-2 md:mb-0"
               style={{
-                color: "#222", fontSize: "clamp(16px, 1.8vw, 24px)",
-                width: "100%", maxWidth: 800, boxSizing: "border-box", wordBreak: "break-word",
-                fontWeight: 500, lineHeight: 1.6, textAlign: "left",
+                color: "#222",
+                width: "100%", boxSizing: "border-box", wordBreak: "break-word",
+                fontWeight: 500, textAlign: "left",
               }}
             />
 
-            {/* Social Links - Cupertino iOS Style */}
+            {/* Mobile CTAs — Compact, sleek & unblocking the kittens (Visible ONLY on mobile) */}
+            <div className="flex md:hidden flex-col gap-2 mt-2 w-full max-w-[325px]">
+              {/* Row 1: Primary actions */}
+              <div className="flex items-center gap-2">
+                <a
+                  href="/hire"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPopupConfig({
+                      title: "",
+                      message: "Are you ready to discuss a project and hire me?",
+                      href: "/hire",
+                      download: false,
+                      isGameTrigger: false
+                    });
+                    setShowPopup(true);
+                  }}
+                  className="flex-1 py-2 px-3.5 rounded-full bg-[#111] text-white text-xs font-semibold flex items-center justify-center gap-1.5 shadow-md active:scale-95 transition-all"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  Hire Me
+                </a>
+                <a
+                  href="/biswadeep_tewari_cv_placeholder.pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPopupConfig({
+                      title: "",
+                      message: "Would you like to download my CV?",
+                      href: "/biswadeep_tewari_cv_placeholder.pdf",
+                      download: true,
+                      isGameTrigger: false
+                    });
+                    setShowPopup(true);
+                  }}
+                  className="flex-1 py-2 px-3.5 rounded-full bg-white/90 backdrop-blur-md text-[#111] text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm border border-black/5 active:scale-95 transition-all"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Download CV
+                </a>
+              </div>
+
+              {/* Row 2: Secondary social chips */}
+              <div className="flex items-center gap-1.5 justify-between">
+                <a
+                  href="https://www.linkedin.com/in/raj-tewari-9a93212a3/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-1.5 px-2.5 rounded-full bg-white/80 backdrop-blur-sm text-[#222] text-[11px] font-medium flex items-center gap-1 shadow-sm border border-black/5 active:scale-95"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/RajTewari01"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-1.5 px-2.5 rounded-full bg-white/80 backdrop-blur-sm text-[#222] text-[11px] font-medium flex items-center gap-1 shadow-sm border border-black/5 active:scale-95"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  GitHub
+                </a>
+                <a
+                  href="mailto:mericans24@gmail.com"
+                  className="py-1.5 px-2.5 rounded-full bg-white/80 backdrop-blur-sm text-[#222] text-[11px] font-medium flex items-center gap-1 shadow-sm border border-black/5 active:scale-95"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  Email
+                </a>
+                <a
+                  href="https://www.buymeacoffee.com/biswadeep"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="py-1.5 px-2.5 rounded-full bg-white/80 backdrop-blur-sm text-[#222] text-[11px] font-medium flex items-center gap-1 shadow-sm border border-black/5 active:scale-95"
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  Fund
+                </a>
+              </div>
+            </div>
+
+            {/* Desktop CTAs — 100% UNTOUCHED original styling (Hidden on mobile) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 2.5 }}
-              className="flex flex-wrap justify-start items-center gap-3 md:gap-4 mt-8 md:mt-12"
+              className="hidden md:flex flex-wrap justify-start items-center gap-3 md:gap-4 mt-8 md:mt-12"
             >
               {[
                 { 
