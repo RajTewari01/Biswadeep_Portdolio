@@ -115,31 +115,29 @@ export default function ParallaxHero() {
 
   // ─── Perspective Sticky calculations ─────────────────────────────────
   const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-  const scale = mapRange(scrollY, 0, vh, 1, 0.85);
-  const rotateZ = mapRange(scrollY, 0, vh, 0, 15); // Clockwise heavy rotation
-  const br = mapRange(scrollY, 0, vh, 0, 32);
-  const dim = mapRange(scrollY, 0, vh, 1, 0.5); // Keep it visible but darker
-  const opacity = mapRange(scrollY, vh * 0.5, vh * 1.2, 1, 0.2); // Slower fade so it peaks into next page
-  const blur = mapRange(scrollY, vh * 0.4, vh, 0, 4); // Subtle blur
+  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
+  const scale = isMobile ? 1 : mapRange(scrollY, 0, vh, 1, 0.85);
+  const rotateZ = isMobile ? 0 : mapRange(scrollY, 0, vh, 0, 15);
+  const br = isMobile ? 0 : mapRange(scrollY, 0, vh, 0, 32);
+  const dim = isMobile ? 1 : mapRange(scrollY, 0, vh, 1, 0.5);
+  const opacity = isMobile ? 1 : mapRange(scrollY, vh * 0.5, vh * 1.2, 1, 0.2);
+  const blur = isMobile ? 0 : mapRange(scrollY, vh * 0.4, vh, 0, 4);
 
   return (
-    <div ref={wrapRef} style={{ position: "relative", height: "200vh" }}>
-      {/* ── S1: STICKY HERO — shrinks + rotates away ── */}
-      <div style={{
-        position: "sticky", top: 0, height: "100vh",
-        zIndex: 50, background: "transparent",
-      }}>
+    <div ref={wrapRef} style={{ position: "relative", minHeight: "100vh" }} className="h-[100vh] md:h-[200vh]">
+      {/* ── S1: HERO ── */}
+      <div className="relative md:sticky top-0 h-[100vh] z-10 bg-transparent">
         <div
           ref={heroRef}
           style={{
             width: "100%", height: "100%",
             position: "relative",
             transformOrigin: "50% 50%",
-            transform: `scale(${scale}) rotate(${rotateZ}deg) translateY(${scrollY * 0.1}px)`,
-            filter: `brightness(${dim}) blur(${blur}px)`,
-            opacity: opacity,
-            borderRadius: br,
-            boxShadow: scrollY > 50 ? "0 40px 100px rgba(0,0,0,0.8)" : "none",
+            transform: isMobile ? "none" : `scale(${scale}) rotate(${rotateZ}deg) translateY(${scrollY * 0.1}px)`,
+            filter: isMobile ? "none" : `brightness(${dim}) blur(${blur}px)`,
+            opacity: isMobile ? 1 : opacity,
+            borderRadius: isMobile ? 0 : br,
+            boxShadow: !isMobile && scrollY > 50 ? "0 40px 100px rgba(0,0,0,0.8)" : "none",
           }}
         >
           {/* Desktop Only: Clean Soft Light Mesh Gradient (No image) */}
@@ -450,16 +448,9 @@ export default function ParallaxHero() {
 
       {/* ── S2: SLIDES OVER HERO ── */}
       <div style={{
-        position: "relative", height: "100vh",
+        position: "relative", minHeight: "100vh",
         background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", zIndex: 2, overflow: "hidden",
       }}>
-        {/* Diagonal top */}
-        <div style={{
-          position: "absolute", top: -1, left: 0, right: 0, height: 100,
-          background: "#090909",
-          clipPath: "polygon(0 100px, 100% 0, 100% 100%, 0 100%)",
-          zIndex: 5,
-        }} />
 
         <div className="flex flex-col md:flex-row" style={{
           height: "100%", alignItems: "center",
