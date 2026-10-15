@@ -129,7 +129,7 @@ export default function AboutSection() {
           {/* Background image */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)",
+            background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
           }} />
 
           {/* Grid */}

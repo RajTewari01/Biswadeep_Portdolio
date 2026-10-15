@@ -260,26 +260,31 @@ export default function CertificatesSection() {
         <div style={{
           display: "flex", gap: 8, marginBottom: 40, flexWrap: "wrap",
         }}>
-          {DYNAMIC_CATEGORIES.map((cat) => (
-            <button
-              key={cat.key}
-              onClick={() => setActiveFilter(cat.key)}
-              style={{
-                padding: "8px 20px", borderRadius: 20,
-                border: `1px solid ${activeFilter === cat.key ? "#C9A96E" : "rgba(0,0,0,0.1)"}`,
-                background: activeFilter === cat.key ? "rgba(201,169,110,0.15)" : "rgba(255,255,255,0.8)",
-                color: activeFilter === cat.key ? "#C9A96E" : "#666",
-                fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
-                textTransform: "uppercase", cursor: "pointer",
-                transition: "all 0.3s",
-              }}
-            >
-              {cat.label} ({cat.key === "all" ? certificates.length : cat.key === "other" ? certificates.filter(c => !top4Issuers.includes(c.issuer)).length : certificates.filter(c => c.issuer === cat.key).length})
-            </button>
-          ))}
+          {DYNAMIC_CATEGORIES.map((cat) => {
+            const isActive = activeFilter === cat.key;
+            return (
+              <button
+                key={cat.key}
+                onClick={() => setActiveFilter(cat.key)}
+                style={{
+                  padding: "8px 20px", borderRadius: 20,
+                  border: isActive ? "1px solid #111111" : "1px solid rgba(0,0,0,0.08)",
+                  background: isActive ? "#111111" : "#ffffff",
+                  color: isActive ? "#ffffff" : "#555555",
+                  fontFamily: "monospace", fontSize: 10, letterSpacing: "0.15em",
+                  fontWeight: isActive ? 700 : 500,
+                  textTransform: "uppercase", cursor: "pointer",
+                  transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                  boxShadow: isActive ? "0 4px 14px rgba(0,0,0,0.15)" : "none",
+                }}
+              >
+                {cat.label} ({cat.key === "all" ? certificates.length : cat.key === "other" ? certificates.filter(c => !top4Issuers.includes(c.issuer)).length : certificates.filter(c => c.issuer === cat.key).length})
+              </button>
+            );
+          })}
         </div>
 
-        {/* Certificate Grid */}
+        {/* Certificate Grid — Solid White Cards, NO Glassmorphism */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
@@ -291,25 +296,21 @@ export default function CertificatesSection() {
               className="cert-card"
               onClick={() => cert.credential_url && window.open(cert.credential_url, "_blank")}
               style={{
-                background: "rgba(255,255,255,0.6)",
-                backdropFilter: "blur(16px)",
-                border: "1px solid rgba(0,0,0,0.05)",
-                borderRadius: 12, padding: 24,
+                background: "#ffffff",
+                border: "1px solid rgba(0,0,0,0.06)",
+                borderRadius: 14, padding: 24,
                 cursor: cert.credential_url ? "pointer" : "default",
                 transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
                 position: "relative", overflow: "hidden",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,1)";
-                e.currentTarget.style.borderColor = "rgba(201,169,110,0.4)";
                 e.currentTarget.style.transform = "translateY(-4px)";
-                e.currentTarget.style.boxShadow = "0 16px 40px rgba(0,0,0,0.05)";
+                e.currentTarget.style.boxShadow = "0 16px 36px rgba(0,0,0,0.08)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.6)";
-                e.currentTarget.style.borderColor = "rgba(0,0,0,0.05)";
                 e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.04)";
               }}
             >
               {/* Issuer badge */}
