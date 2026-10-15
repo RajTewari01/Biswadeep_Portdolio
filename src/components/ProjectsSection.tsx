@@ -265,7 +265,7 @@ export default function ProjectsSection() {
         position: "absolute", bottom: -1, left: 0, right: 0,
         width: "100%", height: 90, zIndex: 10,
       }}>
-        <path d="M0,45 C600,0 840,90 1440,45 L1440,90 L0,90 Z" fill="#781939" />
+        <path d="M0,45 C600,0 840,90 1440,45 L1440,90 L0,90 Z" fill="#090909" />
       </svg>
 
       {/* Redirecting Overlay */}

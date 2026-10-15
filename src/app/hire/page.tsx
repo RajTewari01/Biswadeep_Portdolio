@@ -56,7 +56,7 @@ export default function HirePage() {
   return (
     <>
       <ThreeCanvas />
-      <div className="fixed inset-0 z-[1] bg-[#e8f5e9]/40 pointer-events-none" />
+      <div className="fixed inset-0 z-[1] bg-gradient-to-b from-[#781939]/10 via-transparent to-[#090909]/40 pointer-events-none" />
       <Navbar />
 
       <main ref={containerRef} className="relative z-10 min-h-[100vh] pt-20 pb-4 px-4 md:px-8 flex flex-col items-center justify-center overflow-hidden">

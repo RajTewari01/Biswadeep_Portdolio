@@ -15,7 +15,7 @@ export default function LegacyGameWorld() {
 
   return (
     <div 
-      className="fixed inset-0 z-[100] bg-[#e8f5e9] animate-in fade-in duration-700"
+      className="fixed inset-0 z-[100] bg-[#090909] animate-in fade-in duration-700"
       style={{ isolation: "isolate" }}
     >
       {/* 

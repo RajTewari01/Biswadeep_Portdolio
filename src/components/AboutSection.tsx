@@ -91,7 +91,7 @@ export default function AboutSection() {
   return (
     <section id="about" ref={sectionRef} style={{ position: "relative" }}>
       {/* ═══ EFFECT 2: SVG MASK REVEAL ═══ */}
-      <div ref={maskWrapRef} style={{ position: "relative", height: "150vh", overflow: "hidden" }}>
+      <div ref={maskWrapRef} style={{ position: "relative", height: "100vh", overflow: "hidden" }}>
         {/* Base (seen before reveal) */}
         <div style={{
           position: "absolute", inset: 0,
@@ -200,13 +200,13 @@ export default function AboutSection() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 10,
         }}>
-          <path d="M0,60 C480,0 960,90 1440,30 L1440,90 L0,90 Z" fill="#781939" />
+          <path d="M0,60 C480,0 960,90 1440,30 L1440,90 L0,90 Z" fill="#090909" />
         </svg>
       </div>
 
       {/* ═══ SKILLS & STATS SECTION ═══ */}
       <div style={{
-        background: "linear-gradient(180deg, #781939 0%, #3D0C1D 45%, #090909 100%)", position: "relative",
+        background: "linear-gradient(180deg, #090909 0%, #3D0C1D 20%, #781939 50%, #3D0C1D 80%, #090909 100%)", position: "relative",
         padding: "80px 0 160px", overflow: "hidden",
       }}>
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12">

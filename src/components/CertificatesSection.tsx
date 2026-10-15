@@ -214,7 +214,7 @@ export default function CertificatesSection() {
 
   return (
     <section id="credentials" ref={sectionRef} style={{
-      background: "linear-gradient(180deg, #781939 0%, #3D0C1D 45%, #090909 100%)", position: "relative",
+      background: "linear-gradient(180deg, #090909 0%, #3D0C1D 20%, #781939 50%, #3D0C1D 80%, #090909 100%)", position: "relative",
       padding: "120px 0", overflow: "hidden",
     }}>
       {/* Ambient glow */}
@@ -454,14 +454,6 @@ export default function CertificatesSection() {
           </div>
         )}
       </div>
-
-      {/* Bottom divider */}
-      <div style={{
-        position: "absolute", bottom: -1, left: 0, right: 0, height: 72,
-        background: "#781939",
-        clipPath: "polygon(0 72px, 100% 0, 100% 100%, 0 100%)",
-        zIndex: 10,
-      }} />
     </section>
   );
 }

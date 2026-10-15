@@ -145,7 +145,7 @@ export default function SkillsMarquee() {
         position: "absolute", bottom: -1, left: 0, right: 0,
         width: "100%", height: 120, zIndex: 10,
       }}>
-        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#781939" />
+        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#090909" />
       </svg>
     </section>
   );
