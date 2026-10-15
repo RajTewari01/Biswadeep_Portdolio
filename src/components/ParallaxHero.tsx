@@ -175,22 +175,15 @@ export default function ParallaxHero() {
 
           {/* Mobile Only: Artwork Wallpaper */}
           <div className="block md:hidden absolute inset-0 z-0 overflow-hidden" style={{
-            background: "linear-gradient(to bottom, #FDF5EC 0%, #F5DFD0 50%, #DC9F8D 100%)",
+            backgroundColor: "#EEDBC9",
           }}>
             <Image
-              src="/hero_art.jpeg"
+              src="/hero_art.png"
               alt="Hero Wallpaper"
               fill
               priority
-              className="object-cover object-center"
+              className="object-cover object-bottom"
               sizes="100vw"
-            />
-            {/* Delicate warm vignette matching wallpaper — zero white haze */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: "linear-gradient(to bottom, rgba(253,245,236,0.1) 0%, transparent 40%, rgba(220,159,141,0.2) 100%)",
-              }}
             />
           </div>
 
