@@ -220,8 +220,8 @@ export default function ParallaxHero() {
           }} />
 
           {/* Hero content */}
-          <div className="absolute inset-0 flex flex-col items-start justify-start md:justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[76px] md:pt-[8vh]">
-            <div className="fade-in mb-3 md:mb-8" style={{
+          <div className="absolute inset-0 flex flex-col items-start justify-start md:justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[108px] md:pt-[8vh]">
+            <div className="fade-in mb-2.5 md:mb-8" style={{
               display: "flex", alignItems: "center", gap: 14,
               background: "#ffffff", padding: "6px 24px 6px 6px", borderRadius: 40,
               boxShadow: "0 10px 30px rgba(0,0,0,0.06)",
@@ -246,7 +246,7 @@ export default function ParallaxHero() {
               className="font-playfair text-[clamp(44px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-2 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
             >
               {"TEWARI".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char-last inline-block opacity-0 text-[#2B1B14] md:text-[#C9A96E]" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
+                <span key={`last-${i}`} className="char-last inline-block opacity-0 text-[#0F172A] md:text-[#C9A96E]" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
               ))}
               <span className="char-last inline-block opacity-0 text-[#0F172A]" style={{ display: "none" }}>.</span>
               <span className="inline-block cursor-blink ml-1 font-light text-[#0F172A]">|</span>
