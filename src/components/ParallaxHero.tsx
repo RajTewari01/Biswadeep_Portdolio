@@ -221,7 +221,7 @@ export default function ParallaxHero() {
 
           {/* Hero content */}
           <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[120px] md:pt-[8vh]">
-            <div className="fade-in -translate-y-1 md:translate-y-0" style={{
+            <div className="fade-in -translate-y-2 md:translate-y-0" style={{
               display: "flex", alignItems: "center", gap: 14,
               marginBottom: 32,
               background: "#ffffff", padding: "6px 24px 6px 6px", borderRadius: 40,
@@ -236,21 +236,36 @@ export default function ParallaxHero() {
 
             <h1
               ref={textRef1}
-              className="font-playfair text-[clamp(48px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
+              className="font-playfair text-[clamp(48px,13vw,240px)] font-black text-[#0F172A] leading-[0.88] tracking-[-0.025em] -translate-y-1 md:translate-y-0 mb-[2px] md:mb-2 flex overflow-hidden fade-in fd2 justify-start"
             >
               {"BISWADEEP".split("").map((char, i) => (
                 <span key={`first-${i}`} className="char-first inline-block">{char}</span>
               ))}
             </h1>
+            <style>{`
+              .tewari-magenta-char {
+                background: linear-gradient(135deg, #B81D5B 0%, #781939 50%, #3D0C1D 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              @media (min-width: 768px) {
+                .tewari-magenta-char {
+                  background: none !important;
+                  -webkit-background-clip: border-box !important;
+                  -webkit-text-fill-color: #C9A96E !important;
+                  color: #C9A96E !important;
+                }
+              }
+            `}</style>
             <h1
               ref={textRef2}
-              className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
+              className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] -translate-y-1 md:translate-y-0 mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
             >
               {"TEWARI".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char-last inline-block opacity-0 text-[#0F172A] md:text-[#C9A96E]" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
+                <span key={`last-${i}`} className="char-last inline-block opacity-0 tewari-magenta-char" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
               ))}
-              <span className="char-last inline-block opacity-0" style={{ color: "#0F172A" }}>.</span>
-              <span className="inline-block cursor-blink ml-1 font-light" style={{ color: "#0F172A" }}>|</span>
+              <span className="char-last inline-block opacity-0 text-[#781939] md:text-[#0F172A]" style={{ display: "none" }}>.</span>
+              <span className="inline-block cursor-blink ml-1 font-light text-[#781939] md:text-[#0F172A]">|</span>
             </h1>
 
             <p
