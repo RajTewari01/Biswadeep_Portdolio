@@ -214,7 +214,7 @@ export default function CertificatesSection() {
 
   return (
     <section id="credentials" ref={sectionRef} style={{
-      background: "linear-gradient(180deg, #090909 0%, #3D0C1D 20%, #781939 50%, #3D0C1D 80%, #090909 100%)", position: "relative",
+      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", position: "relative",
       padding: "120px 0", overflow: "hidden",
     }}>
       {/* Ambient glow */}
