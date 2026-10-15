@@ -199,12 +199,12 @@ export default function ContactSection() {
       {/* Footer line */}
       <footer style={{
         position: "absolute", bottom: 0, left: 0, right: 0,
-        borderTop: "1px solid rgba(0,0,0,0.04)",
+        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
         padding: "20px 0",
       }}>
         <div className="section-pad-x" style={{
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          fontFamily: "monospace", fontSize: 9, color: "rgba(0,0,0,0.4)",
+          fontFamily: "monospace", fontSize: 9, color: "rgba(255, 255, 255, 0.5)",
           letterSpacing: "0.15em",
         }}>
           <span>© 2026 BISWADEEP TEWARI</span>
