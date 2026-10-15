@@ -95,7 +95,7 @@ export default function AboutSection() {
         {/* Base (seen before reveal) */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "#e8f5e9",
+          background: "#781939",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           {/* Pulsing rings */}

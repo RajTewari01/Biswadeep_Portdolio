@@ -443,12 +443,12 @@ export default function ParallaxHero() {
       {/* ── S2: SLIDES OVER HERO ── */}
       <div style={{
         position: "relative", height: "100vh",
-        background: "#e8f5e9", zIndex: 2, overflow: "hidden",
+        background: "#781939", zIndex: 2, overflow: "hidden",
       }}>
         {/* Diagonal top */}
         <div style={{
           position: "absolute", top: -1, left: 0, right: 0, height: 100,
-          background: "#e8f5e9",
+          background: "#781939",
           clipPath: "polygon(0 100px, 100% 0, 100% 100%, 0 100%)",
           zIndex: 5,
         }} />
@@ -468,7 +468,7 @@ export default function ParallaxHero() {
             <div style={{
               display: "flex", alignItems: "center", gap: 10,
               fontFamily: "monospace", fontSize: "clamp(12px, 1.5vw, 15px)", letterSpacing: "0.28em",
-              color: "rgba(0,0,0,0.35)", marginBottom: "clamp(12px, 2vw, 22px)",
+              color: "rgba(255, 255, 255, 0.7)", marginBottom: "clamp(12px, 2vw, 22px)",
             }}>
               <span style={{ color: "#C9A96E", fontWeight: 700 }}>01</span>
               <span style={{ width: 40, height: 1, background: "#C9A96E", opacity: 0.5, display: "inline-block" }} />
@@ -478,7 +478,7 @@ export default function ParallaxHero() {
             <h2 style={{
               fontFamily: "var(--font-playfair), 'Playfair Display', serif",
               fontSize: "clamp(48px, 6vw, 110px)",
-              fontWeight: 700, color: "#111",
+              fontWeight: 700, color: "#ffffff",
               lineHeight: 1.05, letterSpacing: "-0.02em",
               marginBottom: "clamp(20px, 4vw, 40px)",
               wordBreak: "break-word",
@@ -489,7 +489,7 @@ export default function ParallaxHero() {
             </h2>
 
             <p style={{
-              fontFamily: "monospace", fontSize: "clamp(15px, 1.8vw, 22px)", color: "#444",
+              fontFamily: "monospace", fontSize: "clamp(15px, 1.8vw, 22px)", color: "rgba(255, 255, 255, 0.9)",
               lineHeight: 1.8, maxWidth: "100%", paddingRight: "4vw",
               borderLeft: "3px solid #C9A96E", paddingLeft: 24,
             }}>
@@ -501,7 +501,7 @@ export default function ParallaxHero() {
             {/* Location info */}
             <div style={{
               marginTop: "clamp(32px, 4vw, 48px)", fontFamily: "monospace",
-              fontSize: "clamp(11px, 1.2vw, 14px)", color: "#888", letterSpacing: "0.15em",
+              fontSize: "clamp(11px, 1.2vw, 14px)", color: "rgba(255, 255, 255, 0.65)", letterSpacing: "0.15em",
             }}>
               <span>Location: IND · Lat: 22.5726° N · Lon: 88.3639° E</span>
             </div>
@@ -552,7 +552,7 @@ export default function ParallaxHero() {
           position: "absolute", bottom: -1, left: 0, right: 0,
           width: "100%", height: 90, zIndex: 4,
         }}>
-          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#e8f5e9" />
+          <path d="M0,0 C240,90 720,0 1440,60 L1440,90 L0,90 Z" fill="#781939" />
         </svg>
       </div>
 
