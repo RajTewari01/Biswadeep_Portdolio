@@ -18,8 +18,8 @@
 
 @layer base {
   html {
-    background-color: #e8f5e9;
-    color: #111;
+    background-color: #090909;
+    color: #ffffff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: auto;
@@ -29,8 +29,8 @@
 
   body {
     font-family: var(--font-space-grotesk), sans-serif;
-    color: #111;
-    background: #e8f5e9;
+    color: #ffffff;
+    background: #090909;
     overflow-x: hidden;
     overscroll-behavior-x: none;
     -webkit-overflow-scrolling: touch;
@@ -237,7 +237,7 @@ html.lenis, html.lenis body {
   position: fixed;
   inset: 0;
   z-index: 100;
-  background: #e8f5e9;
+  background: #090909;
   opacity: 0;
   animation: gameReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -252,7 +252,7 @@ html.lenis, html.lenis body {
 .game-loading {
   position: absolute; inset: 0; z-index: 200;
   display: flex; align-items: center; justify-content: center;
-  background: #e8f5e9;
+  background: #090909;
 }
 .game-loading-inner { text-align: center; }
 .game-loading-logo {
