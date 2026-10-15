@@ -175,7 +175,7 @@ export default function ParallaxHero() {
 
           {/* Mobile Only: Artwork Wallpaper */}
           <div className="block md:hidden absolute inset-0 z-0 overflow-hidden" style={{
-            backgroundColor: "#EEDBC9",
+            backgroundColor: "#E5E5E5",
           }}>
             <Image
               src="/hero_art.png"
