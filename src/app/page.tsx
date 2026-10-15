@@ -56,8 +56,8 @@ export default function Home() {
       {/* 3D WebGL background */}
       {!isGameMode && <ThreeCanvas />}
 
-      {/* Global black overlay for depth */}
-      {!isGameMode && <div className="fixed inset-0 z-[1] bg-[#e8f5e9]/30 pointer-events-none" />}
+      {/* Global overlay for depth */}
+      {!isGameMode && <div className="fixed inset-0 z-[1] bg-gradient-to-b from-[#781939]/10 via-transparent to-[#090909]/30 pointer-events-none" />}
 
       {/* Custom cursor */}
       {!isGameMode && <CustomCursor />}
