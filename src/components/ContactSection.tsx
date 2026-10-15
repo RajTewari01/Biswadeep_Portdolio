@@ -79,7 +79,7 @@ export default function ContactSection() {
     <section id="contact" ref={sectionRef} style={{
       position: "relative",
       minHeight: "100vh",
-      background: "linear-gradient(180deg, #090909 0%, #3D0C1D 20%, #781939 50%, #3D0C1D 80%, #090909 100%)",
+      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
       display: "flex", flexDirection: "column",
       alignItems: "center", justifyContent: "center",
       padding: "120px 24px",
