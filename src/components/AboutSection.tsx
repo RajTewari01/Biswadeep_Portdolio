@@ -129,7 +129,7 @@ export default function AboutSection() {
           {/* Background image */}
           <div style={{
             position: "absolute", inset: 0,
-            background: "linear-gradient(135deg, #14040e 0%, #26081a 50%, #090206 100%)",
+            background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)",
           }} />
 
           {/* Grid */}
@@ -206,7 +206,7 @@ export default function AboutSection() {
 
       {/* ═══ SKILLS & STATS SECTION ═══ */}
       <div style={{
-        background: "linear-gradient(180deg, #090909 0%, #3D0C1D 20%, #781939 50%, #3D0C1D 80%, #090909 100%)", position: "relative",
+        background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", position: "relative",
         padding: "80px 0 160px", overflow: "hidden",
       }}>
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
