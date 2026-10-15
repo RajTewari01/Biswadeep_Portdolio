@@ -102,7 +102,9 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 0.3, ease: "circOut" }}
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          scrolled ? "py-2" : "py-4"
+          scrolled
+            ? "pb-2 pt-[max(env(safe-area-inset-top,0px),36px)] md:py-2"
+            : "pb-4 pt-[max(env(safe-area-inset-top,0px),42px)] md:py-4"
         }`}
         style={scrolled ? {
           background: "rgba(232, 245, 233, 0.92)",

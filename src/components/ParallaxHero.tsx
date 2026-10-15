@@ -227,7 +227,7 @@ export default function ParallaxHero() {
           }} />
 
           {/* Hero content */}
-          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden" style={{ paddingTop: "8vh" }}>
+          <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[120px] md:pt-[8vh]">
             <div className="fade-in" style={{
               display: "flex", alignItems: "center", gap: 14,
               marginBottom: 32,
