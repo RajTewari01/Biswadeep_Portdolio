@@ -128,7 +128,7 @@ export default function ProjectsSection() {
   return (
     <section id="work" ref={sectionRef} style={{
       position: "relative", minHeight: "100vh",
-      background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)", overflow: "hidden",
+      background: "linear-gradient(135deg, #0e0514 0%, #1c0a27 50%, #08020c 100%)", overflow: "hidden",
     }}>
       {/* ── TOP WAVE from About section (curves into image) ── */}
       <svg viewBox="0 0 1440 90" preserveAspectRatio="none" style={{
@@ -275,7 +275,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a1f15]/95 backdrop-blur-md"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#08020c]/95 backdrop-blur-md"
           >
             <style>{`
               @keyframes boyArmWave {

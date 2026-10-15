@@ -38,7 +38,7 @@ export default function SkillsMarquee() {
       ref={sectionRef}
       style={{
         position: "relative", minHeight: "80vh",
-        background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)", overflow: "hidden",
+        background: "linear-gradient(135deg, #0e0514 0%, #1c0a27 50%, #08020c 100%)", overflow: "hidden",
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "80px 0",
