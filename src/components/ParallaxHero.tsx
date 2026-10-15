@@ -451,7 +451,7 @@ export default function ParallaxHero() {
       {/* ── S2: SLIDES OVER HERO ── */}
       <div style={{
         position: "relative", height: "100vh",
-        background: "linear-gradient(180deg, #090909 0%, #3D0C1D 20%, #781939 50%, #3D0C1D 80%, #090909 100%)", zIndex: 2, overflow: "hidden",
+        background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", zIndex: 2, overflow: "hidden",
       }}>
         {/* Diagonal top */}
         <div style={{
