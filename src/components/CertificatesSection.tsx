@@ -458,7 +458,7 @@ export default function CertificatesSection() {
       {/* Bottom divider */}
       <div style={{
         position: "absolute", bottom: -1, left: 0, right: 0, height: 72,
-        background: "#090909",
+        background: "#781939",
         clipPath: "polygon(0 72px, 100% 0, 100% 100%, 0 100%)",
         zIndex: 10,
       }} />
