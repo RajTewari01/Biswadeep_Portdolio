@@ -164,12 +164,12 @@ export default function ParallaxHero() {
               filter: "blur(120px)", borderRadius: "50%", opacity: 0.7,
             }} />
 
-            {/* Glowing mint center */}
+            {/* Ambient center glow */}
             <div style={{
               position: "absolute", width: "70vw", height: "70vw",
               top: "20%", left: "20%",
-              background: "#D1FAE5",
-              filter: "blur(140px)", borderRadius: "50%", opacity: 0.5,
+              background: "#FCE7F3",
+              filter: "blur(140px)", borderRadius: "50%", opacity: 0.35,
             }} />
           </div>
 
@@ -243,10 +243,17 @@ export default function ParallaxHero() {
               ))}
             </h1>
             <style>{`
+              @keyframes dynamicMagentaShift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+              }
               .tewari-magenta-char {
-                background: linear-gradient(135deg, #781939 0%, #3D0C1D 45%, #090909 100%);
+                background: linear-gradient(135deg, #A0154E 0%, #781939 30%, #3D0C1D 65%, #090909 100%);
+                background-size: 250% 250%;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+                animation: dynamicMagentaShift 6s ease infinite;
               }
               @media (min-width: 768px) {
                 .tewari-magenta-char {
@@ -254,6 +261,7 @@ export default function ParallaxHero() {
                   -webkit-background-clip: border-box !important;
                   -webkit-text-fill-color: #C9A96E !important;
                   color: #C9A96E !important;
+                  animation: none !important;
                 }
               }
             `}</style>
