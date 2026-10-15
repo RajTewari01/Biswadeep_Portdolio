@@ -128,14 +128,14 @@ export default function ProjectsSection() {
   return (
     <section id="work" ref={sectionRef} style={{
       position: "relative", minHeight: "100vh",
-      background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)", overflow: "hidden",
+      background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", overflow: "hidden",
     }}>
-      {/* ── TOP WAVE from About section (cream curves into image) ── */}
+      {/* ── TOP WAVE from About section (curves into image) ── */}
       <svg viewBox="0 0 1440 90" preserveAspectRatio="none" style={{
         position: "absolute", top: -1, left: 0, right: 0,
         width: "100%", height: 90, zIndex: 10,
       }}>
-        <path d="M0,0 L1440,0 L1440,60 C1080,0 360,90 0,30 Z" fill="#e8f5e9" />
+        <path d="M0,0 L1440,0 L1440,60 C1080,0 360,90 0,30 Z" fill="#090909" />
       </svg>
       {/* ── GRID BG ── */}
       <div style={{
@@ -265,7 +265,7 @@ export default function ProjectsSection() {
         position: "absolute", bottom: -1, left: 0, right: 0,
         width: "100%", height: 90, zIndex: 10,
       }}>
-        <path d="M0,45 C600,0 840,90 1440,45 L1440,90 L0,90 Z" fill="#e8f5e9" />
+        <path d="M0,45 C600,0 840,90 1440,45 L1440,90 L0,90 Z" fill="#090909" />
       </svg>
 
       {/* Redirecting Overlay */}
@@ -275,7 +275,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a1f15]/95 backdrop-blur-md"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#3D0C1D]/95 backdrop-blur-md"
           >
             <style>{`
               @keyframes boyArmWave {

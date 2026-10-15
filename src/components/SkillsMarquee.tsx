@@ -38,7 +38,7 @@ export default function SkillsMarquee() {
       ref={sectionRef}
       style={{
         position: "relative", minHeight: "80vh",
-        background: "linear-gradient(135deg, #0f2c1f 0%, #17402a 50%, #0a1f15 100%)", overflow: "hidden",
+        background: "linear-gradient(180deg, #090909 0%, #4A0E23 25%, #9C1A4A 50%, #4A0E23 75%, #090909 100%)", overflow: "hidden",
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         padding: "80px 0",
@@ -61,7 +61,7 @@ export default function SkillsMarquee() {
         position: "absolute", top: -1, left: 0, right: 0,
         width: "100%", height: 90, zIndex: 10,
       }}>
-        <path d="M0,0 L1440,0 L1440,60 C1080,90 360,0 0,30 Z" fill="#e8f5e9" />
+        <path d="M0,0 L1440,0 L1440,60 C1080,90 360,0 0,30 Z" fill="#090909" />
       </svg>
 
       {/* Grain */}
@@ -145,7 +145,7 @@ export default function SkillsMarquee() {
         position: "absolute", bottom: -1, left: 0, right: 0,
         width: "100%", height: 120, zIndex: 10,
       }}>
-        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#e8f5e9" />
+        <path d="M0,60 C400,0 1000,120 1440,60 L1440,120 L0,120 Z" fill="#090909" />
       </svg>
     </section>
   );
