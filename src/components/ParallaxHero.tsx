@@ -142,8 +142,8 @@ export default function ParallaxHero() {
             boxShadow: scrollY > 50 ? "0 40px 100px rgba(0,0,0,0.8)" : "none",
           }}
         >
-          {/* Apple/Pinterest Soft Light Mesh Gradient */}
-          <div style={{
+          {/* Desktop Only: Clean Soft Light Mesh Gradient (No image) */}
+          <div className="hidden md:block" style={{
             position: "absolute", inset: "-10% -10%",
             backgroundColor: "#F8FAFC", // Clean off-white slate base
             overflow: "hidden", zIndex: 0,
@@ -173,16 +173,35 @@ export default function ParallaxHero() {
             }} />
           </div>
 
-          {/* Subtle clean grid */}
-          <div style={{
+          {/* Mobile Only: Artwork Wallpaper */}
+          <div className="block md:hidden absolute inset-0 z-0 overflow-hidden">
+            <Image
+              src="/hero_art.jpeg"
+              alt="Hero Wallpaper"
+              fill
+              priority
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            {/* Soft luminous wash over wallpaper to ensure text legibility */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: "linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.2) 40%, rgba(248,237,225,0.45) 100%)",
+              }}
+            />
+          </div>
+
+          {/* Subtle clean grid — desktop only */}
+          <div className="hidden md:block" style={{
             position: "absolute", inset: 0, opacity: 0.03,
             backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
             backgroundSize: "64px 64px",
             pointerEvents: "none", zIndex: 1,
           }} />
 
-          {/* Professional Circuit Board Pattern Overlay */}
-          <div style={{
+          {/* Professional Circuit Board Pattern Overlay — desktop only */}
+          <div className="hidden md:block" style={{
             position: "absolute", inset: 0, opacity: 0.25,
             backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h20v20h-20zM40 40h20v20h-20zM70 70h20v20h-20z' fill='none' stroke='%230F172A' stroke-width='1' stroke-opacity='0.1'/%3E%3Cpath d='M20 20 l 20 20 M50 50 l 20 20' stroke='%230F172A' stroke-width='1' stroke-opacity='0.1'/%3E%3Ccircle cx='10' cy='10' r='2' fill='%230F172A' fill-opacity='0.2'/%3E%3Ccircle cx='40' cy='40' r='2' fill='%230F172A' fill-opacity='0.2'/%3E%3Ccircle cx='70' cy='70' r='2' fill='%230F172A' fill-opacity='0.2'/%3E%3C/svg%3E")`,
             backgroundSize: "100px 100px",
