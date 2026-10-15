@@ -174,7 +174,9 @@ export default function ParallaxHero() {
           </div>
 
           {/* Mobile Only: Artwork Wallpaper */}
-          <div className="block md:hidden absolute inset-0 z-0 overflow-hidden">
+          <div className="block md:hidden absolute inset-0 z-0 overflow-hidden" style={{
+            background: "linear-gradient(to bottom, #FDF5EC 0%, #F5DFD0 50%, #DC9F8D 100%)",
+          }}>
             <Image
               src="/hero_art.jpeg"
               alt="Hero Wallpaper"
@@ -183,11 +185,11 @@ export default function ParallaxHero() {
               className="object-cover object-center"
               sizes="100vw"
             />
-            {/* Soft luminous wash over wallpaper to ensure text legibility */}
+            {/* Delicate warm vignette matching wallpaper — zero white haze */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: "linear-gradient(to bottom, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.2) 40%, rgba(248,237,225,0.45) 100%)",
+                background: "linear-gradient(to bottom, rgba(253,245,236,0.1) 0%, transparent 40%, rgba(220,159,141,0.2) 100%)",
               }}
             />
           </div>
