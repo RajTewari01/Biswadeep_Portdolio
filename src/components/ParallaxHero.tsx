@@ -221,7 +221,7 @@ export default function ParallaxHero() {
 
           {/* Hero content */}
           <div className="absolute inset-0 flex flex-col items-start justify-center px-6 md:px-[10vw] max-w-[100vw] overflow-hidden pt-[120px] md:pt-[8vh]">
-            <div className="fade-in" style={{
+            <div className="fade-in -translate-y-1 md:translate-y-0" style={{
               display: "flex", alignItems: "center", gap: 14,
               marginBottom: 32,
               background: "#ffffff", padding: "6px 24px 6px 6px", borderRadius: 40,
@@ -247,7 +247,7 @@ export default function ParallaxHero() {
               className="font-playfair text-[clamp(48px,13vw,240px)] font-black leading-[0.88] tracking-[-0.025em] mb-4 md:mb-[40px] flex flex-wrap justify-start overflow-hidden"
             >
               {"TEWARI".split("").map((char, i) => (
-                <span key={`last-${i}`} className="char-last inline-block opacity-0" style={{ display: "none", color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
+                <span key={`last-${i}`} className="char-last inline-block opacity-0 text-[#0F172A] md:text-[#C9A96E]" style={{ display: "none", fontStyle: "italic", fontWeight: 400 }}>{char}</span>
               ))}
               <span className="char-last inline-block opacity-0" style={{ color: "#0F172A" }}>.</span>
               <span className="inline-block cursor-blink ml-1 font-light" style={{ color: "#0F172A" }}>|</span>
@@ -297,17 +297,17 @@ export default function ParallaxHero() {
                     background: "#FFFFFF",
                     color: "#111", fontSize: 15,
                     fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                    boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                    boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
                     transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                     display: "flex", alignItems: "center", gap: 10,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = "scale(1.05)";
-                    e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+                    e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = "scale(1)";
-                    e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+                    e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
                   }}
                 >
                   {item.icon}
@@ -332,18 +332,18 @@ export default function ParallaxHero() {
                   background: "#FFFFFF",
                   color: "#111", fontSize: 15,
                   fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                  boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
                   transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                   display: "flex", alignItems: "center", gap: 10,
                   cursor: "pointer"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+                  e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+                  e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
@@ -367,18 +367,18 @@ export default function ParallaxHero() {
                   background: "#FFFFFF",
                   color: "#111", fontSize: 15,
                   fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                  boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
                   transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                   display: "flex", alignItems: "center", gap: 10,
                   cursor: "pointer"
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+                  e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+                  e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -393,17 +393,17 @@ export default function ParallaxHero() {
                   background: "#FFFFFF",
                   color: "#111", fontSize: 15,
                   fontFamily: "var(--font-syne), sans-serif", fontWeight: 600,
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+                  boxShadow: "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)",
                   transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                   display: "flex", alignItems: "center", gap: 10,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
-                  e.currentTarget.style.boxShadow = "0 12px 32px rgba(0,0,0,0.1)";
+                  e.currentTarget.style.boxShadow = "0 18px 36px -4px rgba(45, 25, 15, 0.22), 0 6px 14px -1px rgba(45, 25, 15, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.95)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.06)";
+                  e.currentTarget.style.boxShadow = "0 14px 28px -4px rgba(45, 25, 15, 0.16), 0 4px 10px -1px rgba(45, 25, 15, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(0, 0, 0, 0.03)";
                 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
